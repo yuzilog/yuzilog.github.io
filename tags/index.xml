@@ -3,5 +3,13 @@
         <title>Tags - 标签 - zlog.fun</title>
         <link>https://zlog.fun/tags/</link>
         <description>Tags - 标签 - zlog.fun</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><atom:link href="https://zlog.fun/tags/" rel="self" type="application/rss+xml" /></channel>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sun, 20 Aug 2023 21:57:32 &#43;0800</lastBuildDate><atom:link href="https://zlog.fun/tags/" rel="self" type="application/rss+xml" /><item>
+    <title>golang</title>
+    <link>https://zlog.fun/tags/golang/</link>
+    <pubDate>Sun, 20 Aug 2023 21:57:32 &#43;0800</pubDate>
+    <author>zlog</author>
+    <guid>https://zlog.fun/tags/golang/</guid>
+    <description><![CDATA[]]></description>
+</item>
+</channel>
 </rss>

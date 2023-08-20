@@ -1,0 +1,15 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>golang - 标签 - zlog.fun</title>
+        <link>https://zlog.fun/tags/golang/</link>
+        <description>golang - 标签 - zlog.fun</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sun, 20 Aug 2023 21:57:32 &#43;0800</lastBuildDate><atom:link href="https://zlog.fun/tags/golang/" rel="self" type="application/rss+xml" /><item>
+    <title>0x01.随机数的库</title>
+    <link>https://zlog.fun/posts/golang/0x01.rand/</link>
+    <pubDate>Sun, 20 Aug 2023 21:57:32 &#43;0800</pubDate>
+    <author>zlog</author>
+    <guid>https://zlog.fun/posts/golang/0x01.rand/</guid>
+    <description><![CDATA[golang 中的随机函数库包括以下两种 math/rand 伪随机 crypto/rand math/rand Package rand implements pseudo-random number generators unsuitable for security-sensitive work. 包的说明中，明确指出使用的伪随机数，seed固定时，生成的序列值是固定的。也就是]]></description>
+</item>
+</channel>
+</rss>
