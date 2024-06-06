@@ -1,37 +1,40 @@
 <!doctype html>
-<html lang="zh-CN">
+<html lang="zh-CN" data-theme="light">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <meta name="generator" content="VuePress 2.0.0-rc.12" />
+    <meta name="theme" content="VuePress Theme Hope 2.0.0-rc.47" />
     <style>
-      :root {
-        --c-bg: #fff;
+      html {
+        background: var(--bg-color, #fff);
       }
-      html.dark {
-        --c-bg: #22272e;
+
+      html[data-theme="dark"] {
+        background: var(--bg-color, #1d1e1f);
       }
-      html,
+
       body {
-        background-color: var(--c-bg);
+        background: var(--bg-color);
       }
     </style>
     <script>
-      const userMode = localStorage.getItem('vuepress-color-scheme')
+      const userMode = localStorage.getItem("vuepress-theme-hope-scheme");
       const systemDarkMode =
         window.matchMedia &&
-        window.matchMedia('(prefers-color-scheme: dark)').matches
-      if (userMode === 'dark' || (userMode !== 'light' && systemDarkMode)) {
-        document.documentElement.classList.toggle('dark', true)
+        window.matchMedia("(prefers-color-scheme: dark)").matches;
+
+      if (userMode === "dark" || (userMode !== "light" && systemDarkMode)) {
+        document.documentElement.setAttribute("data-theme", "dark");
       }
     </script>
-    <title>ZLOG.FUN</title><meta name="description" content="Just playing around">
-    <link rel="preload" href="/assets/style-B2A49VGO.css" as="style"><link rel="stylesheet" href="/assets/style-B2A49VGO.css">
-    <link rel="modulepreload" href="/assets/app-BZK6Hez2.js"><link rel="modulepreload" href="/assets/404.html-BAc9J-VQ.js">
-    <link rel="prefetch" href="/assets/index.html-DtcOlveP.js" as="script">
+    <title></title><meta name="description" content="">
+    <link rel="preload" href="/assets/style-Crt0oBuI.css" as="style"><link rel="stylesheet" href="/assets/style-Crt0oBuI.css">
+    <link rel="modulepreload" href="/assets/app-DqGknDUV.js"><link rel="modulepreload" href="/assets/404.html-DX4BUA76.js"><link rel="modulepreload" href="/assets/plugin-vue_export-helper-DlAUqK2U.js">
+    <link rel="prefetch" href="/assets/index.html-39hAU6CX.js" as="script"><link rel="prefetch" href="/assets/index.html-CRopoz-h.js" as="script"><link rel="prefetch" href="/assets/markdown.html-DUsacqrq.js" as="script"><link rel="prefetch" href="/assets/index.html-CLLsEhay.js" as="script"><link rel="prefetch" href="/assets/index.html-B9msP42w.js" as="script"><link rel="prefetch" href="/assets/index.html-BJ-Ne6kh.js" as="script"><link rel="prefetch" href="/assets/index.html-CLJ4gDxS.js" as="script"><link rel="prefetch" href="/assets/index.html-DHb0AhNl.js" as="script"><link rel="prefetch" href="/assets/index.html-CvM-y-gN.js" as="script"><link rel="prefetch" href="/assets/index.html-DZFx5-Ky.js" as="script"><link rel="prefetch" href="/assets/index.html-BLvVLter.js" as="script"><link rel="prefetch" href="/assets/index.html-B9msP42w.js" as="script"><link rel="prefetch" href="/assets/photoswipe.esm-GXRgw7eJ.js" as="script">
   </head>
   <body>
-    <div id="app"><!--[--><div class="theme-container"><main class="page"><div class="theme-default-content"><h1>404</h1><blockquote>Looks like we&#39;ve got some broken links.</blockquote><a class="route-link" href="/">Take me home</a></div></main></div><!--[--><!----><!--]--><!--]--></div>
-    <script type="module" src="/assets/app-BZK6Hez2.js" defer></script>
+    <div id="app"><!--[--><!--[--><!--[--><span tabindex="-1"></span><a href="#main-content" class="vp-skip-link sr-only">跳至主要內容</a><!--]--><!--[--><div class="theme-container no-navbar no-sidebar external-link-icon has-toc"><!----><!----><div class="toggle-sidebar-wrapper"><span class="arrow start"></span></div><aside id="sidebar" class="vp-sidebar"><!----><ul class="vp-sidebar-links"><li><a class="route-link auto-link vp-sidebar-link vp-sidebar-page" href="/" aria-label="ZLOG"><!--[--><span class="font-icon icon blog" style=""></span><!--]-->ZLOG<!----></a></li><li><section class="vp-sidebar-group"><button class="vp-sidebar-header clickable" type="button"><!----><span class="vp-sidebar-title">Note</span><span class="vp-arrow end"></span></button><!----></section></li></ul><!----></aside><!--[--><main id="main-content" class="vp-page not-found"><div class="not-found-hint"><p class="error-code">404</p><h1 class="error-title">页面不存在</h1><p class="error-hint">这里什么也没有</p></div><div class="actions"><button type="button" class="action-button">返回上一页</button><button type="button" class="action-button">带我回家</button></div></main><!--]--><!----></div><!--]--><!--]--><!--[--><!----><!--]--><!--]--></div>
+    <script type="module" src="/assets/app-DqGknDUV.js" defer></script>
   </body>
 </html>
