@@ -84,7 +84,7 @@ PASS
    
 panic: runtime error: integer divide by zero [recovered]
 	panic: runtime error: integer divide by zero
-</code></pre><p>程序运行错误：几维鸟类重写了鸟类的 SetSpeed()方法，这违背了里氏替换原则。正确的做法是：取消几维鸟原来的继承关系，定义鸟和几维鸟的更一般的父类，如动物类，它们都有奔跑的能力。几维鸟的飞行速度虽然为 0，但奔跑速度不为 0，可以计算出其奔跑 300 千米所要花费的时间。</p><p>如下图二：</p><p><img src=/posts/lsp2.gif alt=lsp1></p><div class=highlight><pre tabindex=0 class=chroma><code class=language-go data-lang=go><span class=line><span class=cl><span class=kn>package</span> <span class=nx>principles</span>
+</code></pre><p>程序运行错误：几维鸟类重写了鸟类的 SetSpeed()方法，这违背了里氏替换原则。正确的做法是：取消几维鸟原来的继承关系，定义鸟和几维鸟的更一般的父类，如动物类，它们都有奔跑的能力。几维鸟的飞行速度虽然为 0，但奔跑速度不为 0，可以计算出其奔跑 300 千米所要花费的时间。</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-go data-lang=go><span class=line><span class=cl><span class=kn>package</span> <span class=nx>principles</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl><span class=kn>import</span> <span class=s>&#34;testing&#34;</span>
 </span></span><span class=line><span class=cl>
