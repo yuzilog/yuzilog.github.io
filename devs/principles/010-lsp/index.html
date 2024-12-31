@@ -1,5 +1,5 @@
 <!doctype html><html lang=zh-cn><head><title>010-Liskov-Substitution-Principle · zlog think
-</title><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=color-scheme content="light dark"><meta name=author content="Deshui Yu"><meta name=description content='里氏替换原则（Liskov Substitution Principle，LSP） 链接到标题 里氏替换原则（Liskov Substitution Principle，LSP）由麻省理工学院计算机科学实验室的里斯科夫（Liskov）女士在 1987 年的“面向对象技术的高峰会议”（OOPSLA）上发表的一篇文章《数据抽象和层次》（Data Abstraction and Hierarchy）里提出来的，她提出：继承必须确保超类所拥有的性质在子类中仍然成立（Inheritance should ensure that any property proved about supertype objects also holds for subtype objects）。
+</title><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=color-scheme content="light dark"><meta name=author content="Laoyu"><meta name=description content='里氏替换原则（Liskov Substitution Principle，LSP） 链接到标题 里氏替换原则（Liskov Substitution Principle，LSP）由麻省理工学院计算机科学实验室的里斯科夫（Liskov）女士在 1987 年的“面向对象技术的高峰会议”（OOPSLA）上发表的一篇文章《数据抽象和层次》（Data Abstraction and Hierarchy）里提出来的，她提出：继承必须确保超类所拥有的性质在子类中仍然成立（Inheritance should ensure that any property proved about supertype objects also holds for subtype objects）。
 里氏替换原则主要阐述了有关继承的一些原则，也就是什么时候应该使用继承，什么时候不应该使用继承，以及其中蕴含的原理。里氏替换原是继承复用的基础，它反映了基类与子类之间的关系，是对开闭原则的补充，是对实现抽象化的具体步骤的规范。
 里氏替换原则的作用 链接到标题 里氏替换原则是实现开闭原则的重要方式之一 它克服了继承中重写父类造成的可复用性变差的缺点 它是动作正确性的保证。即类的扩展不会给已有的系统引入新的错误，降低了代码出错的可能性 里氏替换原则的实现方法 链接到标题 里氏替换原则通俗来讲就是：子类可以扩展父类的功能，但不能改变父类原有的功能。
 如果通过重写父类的方法来完成新的功能，这样写起来虽然简单，但是整个继承体系的可复用性会比较差，特别是运用多态比较频繁时，程序运行出错的概率会非常大。
@@ -137,8 +137,8 @@ panic: runtime error: integer divide by zero [recovered]
     lsp_test.go:42: swallow: 5 km/s
     lsp_test.go:47: brownKiwi: 6 km/s
 PASS
-</code></pre></div></div><footer></footer></article></section></div><footer class=footer><section class=container><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8308665726033207" crossorigin=anonymous></script><ins class=adsbygoogle style=display:block data-ad-client=ca-pub-8308665726033207 data-ad-slot=3011594220 data-ad-format=auto data-full-width-responsive=true></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({})</script></section><section class=container>©
+</code></pre></div></div><footer></footer></article></section></div><footer class=footer><section class=container>©
 2015 -
 2024
-Deshui Yu
+Laoyu
 ·</section></footer></main><script src=/js/coder.min.6ae284be93d2d19dad1f02b0039508d9aab3180a12a06dcc71b0b0ef7825a317.js integrity="sha256-auKEvpPS0Z2tHwKwA5UI2aqzGAoSoG3McbCw73gloxc="></script><script async src="https://www.googletagmanager.com/gtag/js?id=G-RYHFS1K5ZH"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-RYHFS1K5ZH")</script></body></html>

@@ -1,5 +1,5 @@
 <!doctype html><html lang=zh-cn><head><title>009-Law-of-Demete · zlog think
-</title><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=color-scheme content="light dark"><meta name=author content="Deshui Yu"><meta name=description content='LOD 迪米特法则 链接到标题 迪米特法则(Law of Demeter, LOD)，有时候也叫做最少知识原则(Least Knowledge Principle, LKP)，它的定义是: 一个软件实体应当尽可能少地与其它实体发生相互作用。产生于 1987 年美国东北大学（Northeastern University）的一个名为迪米特（Demeter）的研究项目，由伊恩·荷兰（Ian Holland）提出，被 UML 创始者之一的布奇（Booch）普及，后来又因为在经典著作《程序员修炼之道》（The Pragmatic Programmer）提及而广为人知。
+</title><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=color-scheme content="light dark"><meta name=author content="Laoyu"><meta name=description content='LOD 迪米特法则 链接到标题 迪米特法则(Law of Demeter, LOD)，有时候也叫做最少知识原则(Least Knowledge Principle, LKP)，它的定义是: 一个软件实体应当尽可能少地与其它实体发生相互作用。产生于 1987 年美国东北大学（Northeastern University）的一个名为迪米特（Demeter）的研究项目，由伊恩·荷兰（Ian Holland）提出，被 UML 创始者之一的布奇（Booch）普及，后来又因为在经典著作《程序员修炼之道》（The Pragmatic Programmer）提及而广为人知。
 迪米特法则的定义是：只与你的直接朋友交谈，不跟“陌生人”说话（Talk only to your immediate friends and not to strangers）。其含义是：如果两个软件实体无须直接通信，那么就不应当发生直接的相互调用，可以通过第三方转发该调用。其目的是降低类之间的耦合度，提高模块的相对独立性。
 迪米特法则中的“朋友”是指：当前对象本身、当前对象的成员对象、当前对象所创建的对象、当前对象的方法参数等，这些对象同当前对象存在关联、聚合或组合关系，可以直接访问这些对象的方法。
 迪米特法则的优点 链接到标题 迪米特法则要求限制软件实体之间通信的宽度和深度，正确使用迪米特法则将有以下两个优点。
@@ -110,8 +110,8 @@ package principles import ( "fmt" "testing" ) // 明星 type Star struct { name 
 </span></span><span class=line><span class=cl>路人甲 与 dengchao 见面了
 </span></span><span class=line><span class=cl>明星 dengchao 去 浙江卫士 参加跑男
 </span></span><span class=line><span class=cl>--- PASS: TestLAD <span class=o>(</span>0.00s<span class=o>)</span>
-</span></span></code></pre></div></div></div><footer></footer></article></section></div><footer class=footer><section class=container><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8308665726033207" crossorigin=anonymous></script><ins class=adsbygoogle style=display:block data-ad-client=ca-pub-8308665726033207 data-ad-slot=3011594220 data-ad-format=auto data-full-width-responsive=true></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({})</script></section><section class=container>©
+</span></span></code></pre></div></div></div><footer></footer></article></section></div><footer class=footer><section class=container>©
 2015 -
 2024
-Deshui Yu
+Laoyu
 ·</section></footer></main><script src=/js/coder.min.6ae284be93d2d19dad1f02b0039508d9aab3180a12a06dcc71b0b0ef7825a317.js integrity="sha256-auKEvpPS0Z2tHwKwA5UI2aqzGAoSoG3McbCw73gloxc="></script><script async src="https://www.googletagmanager.com/gtag/js?id=G-RYHFS1K5ZH"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-RYHFS1K5ZH")</script></body></html>

@@ -1,5 +1,5 @@
 <!doctype html><html lang=zh-cn><head><title>014-Catalina macOS 10.15 下 CGO 不能运行的解决方案 · zlog think
-</title><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=color-scheme content="light dark"><meta name=author content="Deshui Yu"><meta name=description content="### golang fatal error: &lsquo;CoreFoundation/CoreFoundation.h&rsquo; file not found&#34; 链接到标题 Macos升级到10.15版本后，Catalina macOS 10.15 下 CGO 不能运行的解决方案
+</title><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=color-scheme content="light dark"><meta name=author content="Laoyu"><meta name=description content="### golang fatal error: &lsquo;CoreFoundation/CoreFoundation.h&rsquo; file not found&#34; 链接到标题 Macos升级到10.15版本后，Catalina macOS 10.15 下 CGO 不能运行的解决方案
 /usr/local/go/src/crypto/x509/root_cgo_darwin.go:16:10: fatal error: 'CoreFoundation/CoreFoundation.h' file not found 其原因是因为/System/Library/Frameworks/CoreFoundation.framework没有头文件导致
 解决方案：
 1、首先确认xcode是否升级到最新版本，在appstore中升级到最新
@@ -36,8 +36,8 @@ ln -s /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Framewo
 cd /System/Library/Frameworks/Security.framework
 ln -s /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks/Security.framework/Headers Headers
 ln -s /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks/Security.framework/Modules Modules
-</code></pre><p>完美解决！</p></div></div><footer></footer></article></section></div><footer class=footer><section class=container><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8308665726033207" crossorigin=anonymous></script><ins class=adsbygoogle style=display:block data-ad-client=ca-pub-8308665726033207 data-ad-slot=3011594220 data-ad-format=auto data-full-width-responsive=true></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({})</script></section><section class=container>©
+</code></pre><p>完美解决！</p></div></div><footer></footer></article></section></div><footer class=footer><section class=container>©
 2015 -
 2024
-Deshui Yu
+Laoyu
 ·</section></footer></main><script src=/js/coder.min.6ae284be93d2d19dad1f02b0039508d9aab3180a12a06dcc71b0b0ef7825a317.js integrity="sha256-auKEvpPS0Z2tHwKwA5UI2aqzGAoSoG3McbCw73gloxc="></script><script async src="https://www.googletagmanager.com/gtag/js?id=G-RYHFS1K5ZH"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-RYHFS1K5ZH")</script></body></html>
