@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Products on Zen</title>
+    <link>/product/</link>
+    <description>Recent content in Products on Zen</description>
+    <generator>Hugo -- 0.152.2</generator>
+    <language>zh</language>
+    <lastBuildDate>Tue, 05 Aug 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="/product/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>YiTab Privacy Policy</title>
+      <link>/product/yitab/</link>
+      <pubDate>Tue, 05 Aug 2025 00:00:00 +0000</pubDate>
+      <guid>/product/yitab/</guid>
+      <description>&lt;p&gt;&lt;strong&gt;Effective Date:&lt;/strong&gt; August 5, 2025&lt;/p&gt;
+&lt;p&gt;YiTab is a minimalist Chrome new tab extension. We take your privacy seriously. Please read the following privacy policy to understand how we handle your information.&lt;/p&gt;
+&lt;h2 id=&#34;-data-collection-and-use&#34;&gt;📌 Data Collection and Use&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;YiTab &lt;strong&gt;does not collect, store, or upload any personal data&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;All user settings (such as shortcuts, custom backgrounds, etc.) are &lt;strong&gt;stored locally in your browser only&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;The extension &lt;strong&gt;does not connect to any third-party servers&lt;/strong&gt; while running.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;No browsing history, behavior, or identity information is tracked&lt;/strong&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;-local-storage&#34;&gt;🔒 Local Storage&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;The extension uses Chrome&amp;rsquo;s local storage (&lt;code&gt;chrome.storage.local&lt;/code&gt;) to save user preferences.&lt;/li&gt;
+&lt;li&gt;All data &lt;strong&gt;remains in your browser&lt;/strong&gt; and is never transmitted over the network.&lt;/li&gt;
+&lt;li&gt;You can clear this data anytime through the Chrome extension management panel.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;-third-party-data-sharing&#34;&gt;🔗 Third-Party Data Sharing&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;YiTab &lt;strong&gt;does not share any user data with third parties&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;We do not sell or provide any information to advertisers or analytics services.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;-user-control&#34;&gt;✅ User Control&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;You can disable or uninstall YiTab at any time through the Chrome Extensions Manager.&lt;/li&gt;
+&lt;li&gt;Clearing browser data or reinstalling the extension will remove all locally stored settings.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;-contact-us&#34;&gt;📞 Contact Us&lt;/h2&gt;
+&lt;p&gt;If you have any questions or concerns regarding this privacy policy, please contact us at:&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

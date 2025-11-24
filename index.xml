@@ -1,86 +1,928 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>zlog think</title><link>/</link><description>Recent content on zlog think</description><generator>Hugo</generator><language>zh-cn</language><lastBuildDate>Tue, 05 Aug 2025 12:01:03 +0800</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml"/><item><title>YiTab Privacy Policy</title><link>/devs/privacy/</link><pubDate>Tue, 05 Aug 2025 12:01:03 +0800</pubDate><guid>/devs/privacy/</guid><description>Effective Date: August 5, 2025
-YiTab is a minimalist Chrome new tab extension. We take your privacy seriously. Please read the following privacy policy to understand how we handle your information.
-📌 Data Collection and Use 链接到标题 YiTab does not collect, store, or upload any personal data. All user settings (such as shortcuts, custom backgrounds, etc.) are stored locally in your browser only. The extension does not connect to any third-party servers while running.</description></item><item><title>关于我</title><link>/about/</link><pubDate>Tue, 03 Sep 2024 23:26:38 +0800</pubDate><guid>/about/</guid><description>试图理解阳明先生的【天下无心外之物】 目标 链接到标题 ✊ 终身学习，坚持读书 💪 计划健身减肥，目前体重75kg，身高169cm 💻 写点代码，做点技术文章 💰 学习如何获取被动收入 📫 关注家庭教育</description></item><item><title>bloom-filter</title><link>/devs/experience/bloom-filter/</link><pubDate>Wed, 21 Aug 2024 15:50:05 +0800</pubDate><guid>/devs/experience/bloom-filter/</guid><description>布隆过滤器（Bloom Filter）是 1970 年由布隆提出的，是一种高效的概率型数据结构。它实际上是一个很长的二进制向量和一系列随机映射函数。用于测试一个元素是否属于一个集合。它特别适用于需要快速检查一个元素是否在一个大集合中的场景。布隆过滤器通过牺牲一定的准确性（存在误判的可能性）来换取空间效率和查询速度。
-布隆过滤器简介 链接到标题 优点和缺点 链接到标题 优点 链接到标题 空间效率高：布隆过滤器相比传统的数据结构（如哈希表、集合），在相同的数据量下占用的内存要少得多。 查询速度快：布隆过滤器的查询时间复杂度为 O(k)，其中 k 是哈希函数的数量，通常是常数。 缺点 链接到标题 存在误判：布隆过滤器会存在误判的可能性，即可能会判断一个元素在集合中，但实际并不在。无法判断元素“肯定不存在”的情况。 无法删除元素：一旦元素被添加到布隆过滤器中，无法删除。如果要删除，需要使用改进的版本，如计数布隆过滤器（Counting Bloom Filter）。 应用场景 链接到标题 缓存系统：布隆过滤器常用于缓存系统中，快速判断一个请求是否已经被缓存，以减少不必要的磁盘访问。 网络爬虫：用于判断一个URL是否已经被访问过，避免重复抓取。 数据库：在数据库查询中，用于快速判断一个键值是否存在于数据库中，以减少不必要的查询。 实际实现方式 链接到标题 import mmh3 from bitarray import bitarray class BloomFilter: def __init__(self, size, hash_count): self.size = size self.hash_count = hash_count self.bit_array = bitarray(size) self.bit_array.setall(0) def add(self, item): for i in range(self.hash_count): index = mmh3.hash(item, i) % self.size self.bit_array[index] = 1 def check(self, item): for i in range(self.</description></item><item><title>014-Catalina macOS 10.15 下 CGO 不能运行的解决方案</title><link>/devs/experience/macos-10.15-go%E4%B8%8D%E8%83%BD%E6%AD%A3%E5%B8%B8%E8%BF%90%E8%A1%8C/</link><pubDate>Tue, 15 Sep 2020 20:52:33 +0800</pubDate><guid>/devs/experience/macos-10.15-go%E4%B8%8D%E8%83%BD%E6%AD%A3%E5%B8%B8%E8%BF%90%E8%A1%8C/</guid><description>### golang fatal error: &amp;lsquo;CoreFoundation/CoreFoundation.h&amp;rsquo; file not found&amp;quot; 链接到标题 Macos升级到10.15版本后，Catalina macOS 10.15 下 CGO 不能运行的解决方案
-/usr/local/go/src/crypto/x509/root_cgo_darwin.go:16:10: fatal error: &amp;#39;CoreFoundation/CoreFoundation.h&amp;#39; file not found 其原因是因为/System/Library/Frameworks/CoreFoundation.framework没有头文件导致
-解决方案：
-1、首先确认xcode是否升级到最新版本，在appstore中升级到最新
-2、执行 csrutil disable
-3、执行 sudo mount -uw /	# 根目录挂载为可读写
-4、将头文件ln 软链接到指定的目录
-cd /System/Library/Frameworks/CoreFoundation.framework ln -s /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks/CoreFoundation.framework/Headers Headers ln -s /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks/CoreFoundation.framework/Modules Modules cd /System/Library/Frameworks/Security.framework ln -s /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks/Security.framework/Headers Headers ln -s /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks/Security.framework/Modules Modules 完美解决！</description></item><item><title>012-设计原则总结</title><link>/devs/principles/012-principle-summrize/</link><pubDate>Tue, 01 Sep 2020 23:54:52 +0800</pubDate><guid>/devs/principles/012-principle-summrize/</guid><description> 软件设计原则总结 链接到标题 一、原则定义 链接到标题 在软件开发中，为了提高软件系统的可维护性和可复用性，增加软件的可扩展性和灵活性。我们需要尽量根据以下7条原则开发程序。提高程序开发效率，降低软件的维护成本。以下对前面学习的设计原则做个简单的汇总。
-1、开闭原则
-软件实体应当对扩展开放，对修改关闭 2、里氏替换原则
-子类可以扩展父类的功能，但不能改变父类原有的功能 3、依赖倒置原则
-高层模块不应该依赖低层模块，两者都应该依赖其抽象；抽象不应该依赖细节，细节应该依赖抽象。（ 要面向接口编程，不要面向实现编程） 4、单一职责原则
-规定一个类应该有且仅有一个引起它变化的原因，否则类应该被拆分 5、接口隔离原则
-要为各个类建立它们需要的专用接口，而不要试图去建立一个很庞大的接口供所有依赖它的类去调用 6、迪米特法则
-如果两个软件实体无须直接通信，那么就不应当发生直接的相互调用，可以通过第三方转发该调用 7、合成复用原则的定义
-要求在软件复用时，要尽量先使用组合或者聚合等关联关系来实现，其次才考虑使用继承关系来实现。 二、各个原则其他说明 链接到标题 继承复用和合成复用两种，继承复用虽然有简单和易实现的优点，但它也存在以下缺点：
-继承复用破坏了类的封装性。因为继承会将父类的实现细节暴露给子类，父类对子类是透明的，所以这种复用又称为“白箱”复用。 子类与父类的耦合度高。父类的实现的任何改变都会导致子类的实现发生变化，这不利于类的扩展与维护。 它限制了复用的灵活性。从父类继承而来的实现是静态的，在编译时已经定义，所以在运行时不可能发生变化。 组合或聚合复用优点
-它维持了类的封装性。因为成分对象的内部细节是新对象看不见的，所以这种复用又称为“黑箱”复用。 新旧类之间的耦合度低。这种复用所需的依赖较少，新对象存取成分对象的唯一方法是通过成分对象的接口。 复用的灵活性高。这种复用可以在运行时动态进行，新对象可以动态地引用与成分对象类型相同的对象。</description></item><item><title>011-Interface-Segregation-Principle</title><link>/devs/principles/011-isp/</link><pubDate>Fri, 28 Aug 2020 22:09:40 +0800</pubDate><guid>/devs/principles/011-isp/</guid><description> 接口隔离原则 链接到标题 接口隔离原则（Interface Segregation Principle，ISP）要求程序员尽量将臃肿庞大的接口拆分成更小的和更具体的接口，让接口中只包含客户感兴趣的方法。
-2002 年罗伯特·C.马丁给“接口隔离原则”的定义是：客户端不应该被迫依赖于它不使用的方法（Clients should not be forced to depend on methods they do not use）。该原则还有另外一个定义：一个类对另一个类的依赖应该建立在最小的接口上（The dependency of one class to another one should depend on the smallest possible interface）。
-以上两个定义的含义是：要为各个类建立它们需要的专用接口，而不要试图去建立一个很庞大的接口供所有依赖它的类去调用。
-接口隔离原则和单一职责都是为了提高类的内聚性、降低它们之间的耦合性，体现了封装的思想，但两者是不同的：
-单一职责原则注重的是职责，而接口隔离原则注重的是对接口依赖的隔离。 单一职责原则主要是约束类，它针对的是程序中的实现和细节；接口隔离原则主要约束接口，主要针对抽象和程序整体框架的构建。 接口隔离原则的优点 链接到标题 接口隔离原则是为了约束接口、降低类对接口的依赖性，遵循接口隔离原则有以下 5 个优点。
-将臃肿庞大的接口分解为多个粒度小的接口，可以预防外来变更的扩散，提高系统的灵活性和可维护性。 接口隔离提高了系统的内聚性，减少了对外交互，降低了系统的耦合性。 如果接口的粒度大小定义合理，能够保证系统的稳定性；但是，如果定义过小，则会造成接口数量过多，使设计复杂化；如果定义太大，灵活性降低，无法提供定制服务，给整体项目带来无法预料的风险。 使用多个专门的接口还能够体现对象的层次，因为可以通过接口的继承，实现对总接口的定义。 能减少项目工程中的代码冗余。过大的大接口里面通常放置许多不用的方法，当实现这个接口的时候，被迫设计冗余的代码。 接口隔离原则的实现方法 链接到标题 在具体应用接口隔离原则时，应该根据以下几个规则来衡量。
-接口尽量小，但是要有限度。一个接口只服务于一个子模块或业务逻辑。 为依赖接口的类定制服务。只提供调用者需要的方法，屏蔽不需要的方法。 了解环境，拒绝盲从。每个项目或产品都有选定的环境因素，环境不同，接口拆分的标准就不同深入了解业务逻辑。 提高内聚，减少对外交互。使接口用最少的方法去完成最多的事情。</description></item><item><title>010-Liskov-Substitution-Principle</title><link>/devs/principles/010-lsp/</link><pubDate>Wed, 26 Aug 2020 23:07:52 +0800</pubDate><guid>/devs/principles/010-lsp/</guid><description>里氏替换原则（Liskov Substitution Principle，LSP） 链接到标题 里氏替换原则（Liskov Substitution Principle，LSP）由麻省理工学院计算机科学实验室的里斯科夫（Liskov）女士在 1987 年的“面向对象技术的高峰会议”（OOPSLA）上发表的一篇文章《数据抽象和层次》（Data Abstraction and Hierarchy）里提出来的，她提出：继承必须确保超类所拥有的性质在子类中仍然成立（Inheritance should ensure that any property proved about supertype objects also holds for subtype objects）。
-里氏替换原则主要阐述了有关继承的一些原则，也就是什么时候应该使用继承，什么时候不应该使用继承，以及其中蕴含的原理。里氏替换原是继承复用的基础，它反映了基类与子类之间的关系，是对开闭原则的补充，是对实现抽象化的具体步骤的规范。
-里氏替换原则的作用 链接到标题 里氏替换原则是实现开闭原则的重要方式之一 它克服了继承中重写父类造成的可复用性变差的缺点 它是动作正确性的保证。即类的扩展不会给已有的系统引入新的错误，降低了代码出错的可能性 里氏替换原则的实现方法 链接到标题 里氏替换原则通俗来讲就是：子类可以扩展父类的功能，但不能改变父类原有的功能。
-如果通过重写父类的方法来完成新的功能，这样写起来虽然简单，但是整个继承体系的可复用性会比较差，特别是运用多态比较频繁时，程序运行出错的概率会非常大。
-如果程序违背了里氏替换原则，则继承类的对象在基类出现的地方会出现运行错误。这时其修正方法是：取消原来的继承关系，重新设计它们之间的关系。
-关于里氏替换原则的例子，最有名的是“正方形不是长方形”。当然，生活中也有很多类似的例子，例如，企鹅、鸵鸟和几维鸟从生物学的角度来划分，它们属于鸟类；但从类的继承关系来看，由于它们不能继承“鸟”会飞的功能，所以它们不能定义成“鸟”的子类。同样，由于“气球鱼”不会游泳，所以不能定义成“鱼”的子类；“玩具炮”炸不了敌人，所以不能定义成“炮”的子类等。
-【例2】里氏替换原则在“几维鸟不是鸟”实例中的应用。
-分析：鸟一般都会飞行，如燕子的飞行速度大概是每小时 120 千米。但是新西兰的几维鸟由于翅膀退化无法飞行，飞行速度为0km。假如要设计一个实例，计算这两种鸟飞行 300 千米要花费的时间。显然，拿燕子来测试这段代码，结果正确，能计算出所需要的时间；但拿几维鸟来测试，结果会发生“除零异常”或是“无穷大”，明显不符合预期。
-如下图一：
-package principles import &amp;#34;testing&amp;#34; type Bird struct { flySpeed int } func (b *Bird) SetSpeed(speed int) { b.flySpeed = speed } func (b *Bird) GetFlyTime(distance int) int { return distance / b.</description></item><item><title>009-Law-of-Demete</title><link>/devs/principles/009-lod/</link><pubDate>Tue, 18 Aug 2020 06:36:00 +0800</pubDate><guid>/devs/principles/009-lod/</guid><description>LOD 迪米特法则 链接到标题 迪米特法则(Law of Demeter, LOD)，有时候也叫做最少知识原则(Least Knowledge Principle, LKP)，它的定义是: 一个软件实体应当尽可能少地与其它实体发生相互作用。产生于 1987 年美国东北大学（Northeastern University）的一个名为迪米特（Demeter）的研究项目，由伊恩·荷兰（Ian Holland）提出，被 UML 创始者之一的布奇（Booch）普及，后来又因为在经典著作《程序员修炼之道》（The Pragmatic Programmer）提及而广为人知。
-迪米特法则的定义是：只与你的直接朋友交谈，不跟“陌生人”说话（Talk only to your immediate friends and not to strangers）。其含义是：如果两个软件实体无须直接通信，那么就不应当发生直接的相互调用，可以通过第三方转发该调用。其目的是降低类之间的耦合度，提高模块的相对独立性。
-迪米特法则中的“朋友”是指：当前对象本身、当前对象的成员对象、当前对象所创建的对象、当前对象的方法参数等，这些对象同当前对象存在关联、聚合或组合关系，可以直接访问这些对象的方法。
-迪米特法则的优点 链接到标题 迪米特法则要求限制软件实体之间通信的宽度和深度，正确使用迪米特法则将有以下两个优点。
-降低了类之间的耦合度，提高了模块的相对独立性。 由于亲合度降低，从而提高了类的可复用率和系统的扩展性。 但是，过度使用迪米特法则会使系统产生大量的中介类，从而增加系统的复杂性，使模块之间的通信效率降低。所以，在釆用迪米特法则时需要反复权衡，确保高内聚和低耦合的同时，保证系统的结构清晰。
-迪米特法则的实现方法 链接到标题 从迪米特法则的定义和特点可知，它强调以下两点：
-从依赖者的角度来说，只依赖应该依赖的对象。 从被依赖者的角度说，只暴露应该暴露的方法。 在运用迪米特法则时要注意以下 6 点：
-在类的划分上，应该创建弱耦合的类。类与类之间的耦合越弱，就越有利于实现可复用的目标。 在类的结构设计上，尽量降低类成员的访问权限。 在类的设计上，优先考虑将一个类设置成不变类。 在对其他类的引用上，将引用其他对象的次数降到最低。 不暴露类的属性成员，而应该提供相应的访问器（set 和 get 方法） 谨慎使用序列化（Serializable）功能。 实例说明 链接到标题 明星与经纪人的关系实例
-分析：星由于全身心投入艺术，所以许多日常事务由经纪人负责处理，如与粉丝的见面会，与媒体公司的业务洽淡等。这里的经纪人是明星的朋友，而粉丝和媒体公司是陌生人，所以适合使用迪米特法则，类图如下
-代码实例：
-package principles import ( &amp;#34;fmt&amp;#34; &amp;#34;testing&amp;#34; ) // 明星 type Star struct { name string } func (s *Star) getName() string { return s.</description></item><item><title>008 Dependency Inversion Principle</title><link>/devs/principles/008-dependency_inversion_principle/</link><pubDate>Thu, 13 Aug 2020 22:29:14 +0800</pubDate><guid>/devs/principles/008-dependency_inversion_principle/</guid><description>依赖倒置原则 链接到标题 依赖倒置原则(DIP)由Robert C. Martin在1996年在 Dependency Inversion Principle中提出，他对此定义如下:
-High level modules should not depend on low level modules. Both should depend on abstractions. Abstractions should not depend upon details. Details should depend on abstractions Robert C. Martin
-顶层模块不应该依赖底层模块。这2者都应该依赖于抽象。抽象不应该依赖于细节。细节应该依赖于抽象。
-程序要依赖于抽象接口，不要依赖于具体实现。简单的说就是要求对抽象进行编程，不要对实现进行编程。也被称作好莱坞原则：Don’t call me，I will call you.其核心思想是:要面向接口编程，不要面向实现编程。
-下面我看一个实例 链接到标题 Example:张三开车的例子，张三是一名司机，可以开不不同品牌的汽车。
-// 面向对象设计原则：DIP依赖倒置原则 // 司机可开任何汽车——依赖抽象/接口 // 汽车 Interface type ICar interface { run() } type Camary struct{} func (C Camary) run() { fmt.Println(&amp;#34;Camary runing&amp;#34;) } type Benz struct{} func (C Benz) run() { fmt.</description></item><item><title>007 Single Responsibility Principle</title><link>/devs/principles/007-single-responsibility-principle/</link><pubDate>Fri, 31 Jul 2020 22:51:03 +0800</pubDate><guid>/devs/principles/007-single-responsibility-principle/</guid><description>链接到标题 软件设计的两个基本准则：低耦合和高内聚
-什么是单一职责原则 链接到标题 单一职责原则，指的是一个类或者模块有只有一 个改变的原因。
-单一职责可以降低类的复杂性，提高代码可读性、可维护性 我们举例说明单一职责， 看下面一段代码,我们实现一个开关，开灯关灯的实例
-const ( // 打开状态 STATE_OK int = 1 // 关闭状态 STATE_ON int = 0 ) // 开关 type Button interface { // 获取状态 GetState() string // 设置状态 SetState(int) } // 灯泡 type Lamp struct { State string } // 获取灯泡状态 func (b *Lamp) GetState() string { return b.State } // 设置灯泡状态 func (b *Lamp) SetState(state int) { switch state { case STATE_OK: b.</description></item><item><title>006 Open Close Principle</title><link>/devs/principles/006-open-close-principle/</link><pubDate>Tue, 28 Jul 2020 22:17:45 +0800</pubDate><guid>/devs/principles/006-open-close-principle/</guid><description>开闭原则实践 链接到标题 开闭原则（Open Close Principle），开闭原则就是说对扩展开放，对修改关闭。在程序需要进行拓展的时候，不能去修改原有的代码，实现一个热插拔的效果。 所以一句话概括就是：为了使程序的扩展性好，易于维护和升级。原文是这样的：Software entities should be open for extension，but closed for modification
-我们举例说明什么是开闭原则，以4s店销售汽车为例，其类图如图所示:
-以下我们以go语言实践如下列子
-ICar接口定义了汽车的两个属性：名称和价格。AudiCar是一个奥迪车的实现类，代表奥迪车的总称。Shop4S代表售卖的4S店
-ICar接口的代码清单如下
-type ICar interface { // 车名 GetName() string // 价格 GetPrice() int } 一般情况下4S店只出售一种品牌的车，这里用奥迪为例，代码清单如下
-type AudiCar struct { name string price int } func (b AudiCar) GetName() string { return b.name } func (b AudiCar) GetPrice() int { return b.price } 这里我们模拟一下4s店售车记录，写个测试
-func TestAudi_GetName(t *testing.T) { var ( list []ICar ) list = []ICar{} list = append(list, &amp;amp;AudiCar{&amp;#34;A6&amp;#34;, 130}) list = append(list, &amp;amp;AudiCar{&amp;#34;A8&amp;#34;, 343}) list = append(list, &amp;amp;AudiCar{&amp;#34;TT&amp;#34;, 60}) for _, v := range list { fmt.</description></item><item><title>005 Design_principles</title><link>/devs/principles/005-design_principles/</link><pubDate>Wed, 22 Jul 2020 22:18:33 +0800</pubDate><guid>/devs/principles/005-design_principles/</guid><description>面向对象的设计原则 链接到标题 设计原则是2002年 罗伯特·塞西尔·马丁 (Robert Cecil Martin)俗称“鲍伯叔叔” 敏捷软件开发：原则、模式与实践/软件工程实践丛书书中提到可重用的五大设计原则 - “SOLID”（英文首字母缩略字）:
-Single Responsibility Principle - 单一职责 Open / Closed Principle - 开闭原则 Liskov Substitution Principle - 里氏替换原则 Interface Segregation Principle - 接口隔离原则 Dependency Inversion Principle - 依赖倒置原则 一、单一职责原则 链接到标题 该原则提出对象不应该承担太多职责，如果一个对象承担了太多的职责，至少存在以下两个缺点：
-一个职责的变化可能会削弱或者抑制这个类实现其他职责的能力； 当客户端需要该对象的某一个职责时，不得不将其他不需要的职责全都包含进来，从而造成冗余代码或代码的浪费。 单一职责的核心就是控制类的粒度大小、将对象解耦、提高其内聚性
-1、单一职责的优点 链接到标题 降低类的复杂度。一个类只负责一项职责，其逻辑肯定要比负责多项职责简单得多。 提高类的可读性。复杂性降低，自然其可读性会提高。 提高系统的可维护性。可读性提高，那自然更容易维护了。 变更引起的风险降低。变更是必然的，如果单一职责原则遵守得好，当修改一个功能时，可以显著降低对其他功能的影响。 2、单一职责原则的实现方法 链接到标题 单一职责原则是最简单但又最难运用的原则，需要设计人员发现类的不同职责并将其分离，再封装到不同的类或模块中。而发现类的多重职责需要设计人员具有较强的分析设计能力和相关重构经验。
-二、开闭原则 链接到标题 开闭原则（OCP）即对修改关闭，扩展开放。代码模块应该在修改代码的的情况下，进行代码的扩展。一般需要通过接口和抽象实现该效果。 开闭原则的含义是当应用的需求改变时，在不修改软件实体代码的源代码或二进制代码的前提下，可以扩展模块功能以满足需求。
-1、开闭原则的作用 链接到标题 开闭原则是面向对象设计的终极目标，它使软件设计有一定的适应性和灵活性。其作用如下：
-对软件测试的影响
-遵守原则的情况下，测试可以只对扩展代码进行测试
-可以提高代码的可复用性
-遵守原则，粒度越小，被复用的可能性越大
-可以提高软件的可维护性
-遵守原则，其稳定性高，持续性强，从而易于维护和扩展
-2、开闭原则的实现方法 链接到标题 可以通过“抽象约束、封装变化”来实现开闭原则，即通过接口或者抽象类为软件实体定义一个相对稳定的抽象层，而将相同的可变因素封装在相同的具体实现类中
-因为抽象灵活性好，适应性广，只要抽象的合理，可以基本保持软件架构的稳定。而软件中易变的细节可以从抽象派生来的实现类来进行扩展，当软件需要发生变化时，只需要根据需求重新派生一个实现类来扩展就可以了。
-下面以 汽车和4S店为例介绍开闭原则的应用。 分析：4s店销售各种型号品牌的汽车，汽车的价格、型号不一样。这些汽车有共同的属性，抽象出一个汽车分类。4s店进一个新型号的汽车，实现这个抽象类就可以，不影响其他型号。如下图所示 三、里氏替换原则 链接到标题 里氏替换原则主要阐述了有关继承的一些原则，也就是什么时候应该使用继承，什么时候不应该使用继承，以及其中蕴含的原理。里氏替换原是继承复用的基础，它反映了基类与子类之间的关系，是对开闭原则的补充，是对实现抽象化的具体步骤的规范。</description></item><item><title>golang快速入门(4) Array &amp; Slice</title><link>/devs/golang/004-golearning/</link><pubDate>Tue, 09 Jun 2020 23:14:36 +0800</pubDate><guid>/devs/golang/004-golearning/</guid><description>本节主要介绍数组(array)与切片(slice)，也比较让人困惑。go语言数组与切片都属于集合类的类型。但数组类型的声明长度必须给定，而且之后不会再改变。切片的长度可以自动地随着其中元素数量的增长而增长，但不会随着元素数量的减少而减小。简而言之：数组是固定长度，切片是可变长度。 go语言中切片可以看成数组的一个特例，这里表达不一定准备，大家自行体会吧。
-Array的使用 Slice的使用 一、Array的使用 链接到标题 1.1 数组定义 链接到标题 // 定一个长度位5的数组 var arr [5]int // 初始化输出的数组会填充为0 [0 0 0 0 0] fmt.Println(&amp;#34;arr:&amp;#34;, arr) // 给下标为4的数组赋值 arr[4] = 100 // 输出：set: [0 0 0 0 100] fmt.Println(&amp;#34;set:&amp;#34;, arr) // get: 100 fmt.Println(&amp;#34;get:&amp;#34;, arr[4]) // len获取数组长度 len: 5 fmt.Println(&amp;#34;len:&amp;#34;, len(arr)) // 带有值的数组定义 b := [5]int{1, 2, 3, 4, 5} // dcl: [1 2 3 4 5] fmt.Println(&amp;#34;dcl:&amp;#34;, b) // 二维数组定义 var twoD [2][3]int for i := 0; i &amp;lt; 2; i++ { for j := 0; j &amp;lt; 3; j++ { twoD[i][j] = i + j } } // 2d: [[0 1 2] [1 2 3]] fmt.</description></item><item><title>golang快速入门(3) 流程控制</title><link>/devs/golang/003-golearning/</link><pubDate>Fri, 05 Jun 2020 23:04:06 +0800</pubDate><guid>/devs/golang/003-golearning/</guid><description>go语言作为类C语言的一种，流程控制与其他编程语言没有什么不同，主要有以下几种控制结构
-选择结构if/Else 多分支选择结构switch 循转结构for 二、选择结构 链接到标题 条件语句是指定一个或多个条件，并通过测试条件是否为 true 来决定是否执行指定语句，并在条件为 false 的情况在执行另外的语句。
-package main import ( &amp;#34;fmt&amp;#34; ) func main() { // 1、简单选择结构 if 5%2 == 0 { fmt.Println(&amp;#34;偶数&amp;#34;) } else { fmt.Println(&amp;#34;奇数&amp;#34;) } // 2、可以不使用else if 8%4 == 0 { fmt.Println(&amp;#34;8 可以被 4 整除&amp;#34;) } // 3、可以在语句中定义 if num := 9; num &amp;lt; 0 { fmt.Println(num, &amp;#34;是一个负数&amp;#34;) } else if num &amp;lt; 10 { fmt.Println(num, &amp;#34;是个位数&amp;#34;) } else { fmt.Println(num, &amp;#34;10位数以上的数组&amp;#34;) } } 输出结果</description></item><item><title>golang快速入门(2) 数据类型</title><link>/devs/golang/002-golearning/</link><pubDate>Wed, 03 Jun 2020 07:55:47 +0800</pubDate><guid>/devs/golang/002-golearning/</guid><description>本节主要介绍golang的数据类型的分类，让给大家对数据类型有个简要的概念，俗话说的好。基础不牢，地动山摇。
-一、数据类型 链接到标题 go语言数据类型分以下表格中四类，简单分，不同书籍上也有不同的说明：
-类型 描述 布尔型 布尔型的值只可以是常量 true 或者 false。一个简单的例子：var b bool = true。 数值类型 整型 int 和浮点型 float32、float64，Go 语言支持整型和浮点型数字，并且支持复数，其中位的运算采用补码。 字符串 字符串就是一串固定长度的字符连接起来的字符序列。Go 的字符串是由单个字节连接起来的。Go 语言的字符串的字节使用 UTF-8 编码标识 Unicode 文本。 派生类型 切片类型、接口类型、Map类型、数组类型、指针类型（Pointer）、结构化类型(struct)、Channel 类型、函数类型 1.1、布尔类型 链接到标题 类型 描述 bool 布尔型的值只可以是常量 true 或者 false。一个简单的例子：var b bool = true 1.2、数值类型 链接到标题 类型 描述 byte 字节类型，类似uint8 rune 类似 int32,go语言定义特有的数据类型，用于存储unicode码 int/uint 有符号整数类型/无符号整数类型 （宽度与平台相关） Int8/uint8 无符号 8 位整型 (0 到 255)/ 有符号 8 位整型 (-128 到 127) int16/uint16 无符号 16 位整型 (0 到 65535)/有符号 16 位整型 (-32768 到 32767) int32/uint32 无符号 32 位整型 (0 到 4294967295)/有符号 32 位整型 (-2147483648 到 2147483647) Int64/uint64 无符号 64 位整型 (0 到 18446744073709551615)/有符号 64 位整型 (-9223372036854775808 到 9223372036854775807) float32 IEEE-754 32位浮点型数 float64 IEEE-754 64位浮点型数 Complex64/complex128 32 位实数和虚数/64 位实数和虚数 1.</description></item><item><title>golang快速入门(1) 前言</title><link>/devs/golang/001-golearning01/</link><pubDate>Tue, 02 Jun 2020 22:54:32 +0800</pubDate><guid>/devs/golang/001-golearning01/</guid><description>1、教程简介 链接到标题 本教程目的：与看到本教程的人一起，学习golang这门语言，分享学习成果，和热爱编程的同志们一起成长。
-Go是一种开放源代码编程语言，旨在构建简单，快速且可靠的软件。详细说明文章请参见golang官网
-2、Hello World 链接到标题 废话不多说，我们直接上代码，Everything is Hello World
-2.1 输入以下内容到hello-world.go
-package main import &amp;#34;fmt&amp;#34; func main() { fmt.Println(&amp;#34;Hello World!&amp;#34;) } 这就是一个完整的go的程序了
-2.2 在安装了golang环境的的命令行，执行以下命令
-# 直接运行程序 $ go run hello-world.go Hello World # 编译程序 $ go build hello-world.go # 执行程序 $ ./hello-world Hello World 3、恭喜你 链接到标题 如果你的输出结果和我一样，恭喜你，你已经学会了，和我达到一样的水平了。</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Zen</title>
+    <link>/</link>
+    <description>Recent content on Zen</description>
+    <generator>Hugo -- 0.152.2</generator>
+    <language>zh</language>
+    <lastBuildDate>Tue, 05 Aug 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>YiTab Privacy Policy</title>
+      <link>/product/yitab/</link>
+      <pubDate>Tue, 05 Aug 2025 00:00:00 +0000</pubDate>
+      <guid>/product/yitab/</guid>
+      <description>&lt;p&gt;&lt;strong&gt;Effective Date:&lt;/strong&gt; August 5, 2025&lt;/p&gt;
+&lt;p&gt;YiTab is a minimalist Chrome new tab extension. We take your privacy seriously. Please read the following privacy policy to understand how we handle your information.&lt;/p&gt;
+&lt;h2 id=&#34;-data-collection-and-use&#34;&gt;📌 Data Collection and Use&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;YiTab &lt;strong&gt;does not collect, store, or upload any personal data&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;All user settings (such as shortcuts, custom backgrounds, etc.) are &lt;strong&gt;stored locally in your browser only&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;The extension &lt;strong&gt;does not connect to any third-party servers&lt;/strong&gt; while running.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;No browsing history, behavior, or identity information is tracked&lt;/strong&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;-local-storage&#34;&gt;🔒 Local Storage&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;The extension uses Chrome&amp;rsquo;s local storage (&lt;code&gt;chrome.storage.local&lt;/code&gt;) to save user preferences.&lt;/li&gt;
+&lt;li&gt;All data &lt;strong&gt;remains in your browser&lt;/strong&gt; and is never transmitted over the network.&lt;/li&gt;
+&lt;li&gt;You can clear this data anytime through the Chrome extension management panel.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;-third-party-data-sharing&#34;&gt;🔗 Third-Party Data Sharing&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;YiTab &lt;strong&gt;does not share any user data with third parties&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;We do not sell or provide any information to advertisers or analytics services.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;-user-control&#34;&gt;✅ User Control&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;You can disable or uninstall YiTab at any time through the Chrome Extensions Manager.&lt;/li&gt;
+&lt;li&gt;Clearing browser data or reinstalling the extension will remove all locally stored settings.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;-contact-us&#34;&gt;📞 Contact Us&lt;/h2&gt;
+&lt;p&gt;If you have any questions or concerns regarding this privacy policy, please contact us at:&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>About Me</title>
+      <link>/about/</link>
+      <pubDate>Tue, 03 Sep 2024 23:26:38 +0800</pubDate>
+      <guid>/about/</guid>
+      <description>&lt;p&gt;👋 Hello! I&amp;rsquo;m Zen Yu, a full-stack developer&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>bloom-filter</title>
+      <link>/posts/experience/bloom-filter/</link>
+      <pubDate>Wed, 21 Aug 2024 15:50:05 +0800</pubDate>
+      <guid>/posts/experience/bloom-filter/</guid>
+      <description>&lt;p&gt;布隆过滤器（Bloom Filter）是 1970 年由布隆提出的，是一种高效的概率型数据结构。它实际上是一个很长的二进制向量和一系列随机映射函数。用于测试一个元素是否属于一个集合。它特别适用于需要快速检查一个元素是否在一个大集合中的场景。布隆过滤器通过牺牲一定的准确性（存在误判的可能性）来换取空间效率和查询速度。&lt;/p&gt;
+&lt;h2 id=&#34;布隆过滤器简介&#34;&gt;布隆过滤器简介&lt;/h2&gt;
+&lt;h3 id=&#34;优点&#34;&gt;优点&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;空间效率高：布隆过滤器相比传统的数据结构（如哈希表、集合），在相同的数据量下占用的内存要少得多。&lt;/li&gt;
+&lt;li&gt;查询速度快：布隆过滤器的查询时间复杂度为 O(k)，其中 k 是哈希函数的数量，通常是常数。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;缺点&#34;&gt;缺点&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;存在误判：布隆过滤器会存在误判的可能性，即可能会判断一个元素在集合中，但实际并不在。无法判断元素“肯定不存在”的情况。&lt;/li&gt;
+&lt;li&gt;无法删除元素：一旦元素被添加到布隆过滤器中，无法删除。如果要删除，需要使用改进的版本，如计数布隆过滤器（Counting Bloom Filter）。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;应用场景&#34;&gt;应用场景&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;缓存系统：布隆过滤器常用于缓存系统中，快速判断一个请求是否已经被缓存，以减少不必要的磁盘访问。&lt;/li&gt;
+&lt;li&gt;网络爬虫：用于判断一个URL是否已经被访问过，避免重复抓取。&lt;/li&gt;
+&lt;li&gt;数据库：在数据库查询中，用于快速判断一个键值是否存在于数据库中，以减少不必要的查询。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;实际实现方式&#34;&gt;实际实现方式&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; mmh3
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;from&lt;/span&gt; bitarray &lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; bitarray
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;BloomFilter&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;__init__&lt;/span&gt;(self, size, hash_count):
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        self&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;size &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; size
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        self&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;hash_count &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; hash_count
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        self&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;bit_array &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; bitarray(size)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        self&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;bit_array&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;setall(&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;add&lt;/span&gt;(self, item):
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; i &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; range(self&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;hash_count):
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            index &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; mmh3&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;hash(item, i) &lt;span style=&#34;color:#f92672&#34;&gt;%&lt;/span&gt; self&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;size
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            self&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;bit_array[index] &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;check&lt;/span&gt;(self, item):
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; i &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; range(self&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;hash_count):
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            index &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; mmh3&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;hash(item, i) &lt;span style=&#34;color:#f92672&#34;&gt;%&lt;/span&gt; self&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;size
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; self&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;bit_array[index] &lt;span style=&#34;color:#f92672&#34;&gt;==&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;False&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;True&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# 使用示例&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;bf &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; BloomFilter(&lt;span style=&#34;color:#ae81ff&#34;&gt;5000&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;7&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;bf&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;add(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;hello&amp;#34;&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;bf&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;add(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;world&amp;#34;&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;print(bf&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;check(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;hello&amp;#34;&lt;/span&gt;))  &lt;span style=&#34;color:#75715e&#34;&gt;# 输出: True&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;print(bf&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;check(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;world&amp;#34;&lt;/span&gt;))  &lt;span style=&#34;color:#75715e&#34;&gt;# 输出: True&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;print(bf&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;check(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;python&amp;#34;&lt;/span&gt;)) &lt;span style=&#34;color:#75715e&#34;&gt;# 输出: False（可能为 False，但存在误判为 True 的可能性）&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;在这个示例中，布隆过滤器使用 mmh3 库来计算哈希值，并使用 bitarray 库来管理位数组。可以根据需要调整位数组的大小和哈希函数的数量，以达到不同的准确性和空间效率。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>macOS 10.15 下 CGO 不能运行的解决方案</title>
+      <link>/posts/experience/macos-cgo/</link>
+      <pubDate>Tue, 15 Sep 2020 20:52:33 +0800</pubDate>
+      <guid>/posts/experience/macos-cgo/</guid>
+      <description>&lt;h3 id=&#34;--golang-fatal-error-corefoundationcorefoundationh-file-not-found&#34;&gt;###  golang fatal error: &amp;lsquo;CoreFoundation/CoreFoundation.h&amp;rsquo; file not found&amp;quot;&lt;/h3&gt;
+&lt;p&gt;Macos升级到10.15版本后，Catalina macOS 10.15 下 CGO 不能运行的解决方案&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;/usr/local/go/src/crypto/x509/root_cgo_darwin.go:16:10: fatal error: &amp;#39;CoreFoundation/CoreFoundation.h&amp;#39; file not found
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;其原因是因为/System/Library/Frameworks/CoreFoundation.framework没有头文件导致&lt;/p&gt;
+&lt;p&gt;解决方案：&lt;/p&gt;
+&lt;p&gt;1、首先确认xcode是否升级到最新版本，在appstore中升级到最新&lt;/p&gt;
+&lt;p&gt;2、执行 &lt;code&gt;csrutil disable&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;3、执行 &lt;code&gt;sudo mount -uw /	# 根目录挂载为可读写&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;4、将头文件ln 软链接到指定的目录&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;cd /System/Library/Frameworks/CoreFoundation.framework
+ln -s /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks/CoreFoundation.framework/Headers Headers
+ln -s /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks/CoreFoundation.framework/Modules Modules
+
+cd /System/Library/Frameworks/Security.framework
+ln -s /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks/Security.framework/Headers Headers
+ln -s /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks/Security.framework/Modules Modules
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;完美解决！&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>012-设计原则总结</title>
+      <link>/posts/principles/012-principle-summrize/</link>
+      <pubDate>Tue, 01 Sep 2020 23:54:52 +0800</pubDate>
+      <guid>/posts/principles/012-principle-summrize/</guid>
+      <description>&lt;h3 id=&#34;软件设计原则总结&#34;&gt;软件设计原则总结&lt;/h3&gt;
+&lt;h4 id=&#34;一原则定义&#34;&gt;一、原则定义&lt;/h4&gt;
+&lt;p&gt;在软件开发中，为了提高软件系统的可维护性和可复用性，增加软件的可扩展性和灵活性。我们需要尽量根据以下7条原则开发程序。提高程序开发效率，降低软件的维护成本。以下对前面学习的设计原则做个简单的汇总。&lt;/p&gt;
+&lt;p&gt;1、开闭原则&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;软件实体应当对扩展开放，对修改关闭&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;2、里氏替换原则&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;子类可以扩展父类的功能，但不能改变父类原有的功能&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;3、依赖倒置原则&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;高层模块不应该依赖低层模块，两者都应该依赖其抽象；抽象不应该依赖细节，细节应该依赖抽象。（ 要面向接口编程，不要面向实现编程）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;4、单一职责原则&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;规定一个类应该有且仅有一个引起它变化的原因，否则类应该被拆分&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;5、接口隔离原则&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;要为各个类建立它们需要的专用接口，而不要试图去建立一个很庞大的接口供所有依赖它的类去调用&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;6、迪米特法则&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;如果两个软件实体无须直接通信，那么就不应当发生直接的相互调用，可以通过第三方转发该调用&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;7、合成复用原则的定义&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;要求在软件复用时，要尽量先使用组合或者聚合等关联关系来实现，其次才考虑使用继承关系来实现。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;二各个原则其他说明&#34;&gt;二、各个原则其他说明&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;继承复用和合成复用两种，继承复用虽然有简单和易实现的优点，但它也存在以下缺点：&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;继承复用破坏了类的封装性。因为继承会将父类的实现细节暴露给子类，父类对子类是透明的，所以这种复用又称为“白箱”复用。&lt;/li&gt;
+&lt;li&gt;子类与父类的耦合度高。父类的实现的任何改变都会导致子类的实现发生变化，这不利于类的扩展与维护。&lt;/li&gt;
+&lt;li&gt;它限制了复用的灵活性。从父类继承而来的实现是静态的，在编译时已经定义，所以在运行时不可能发生变化。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;组合或聚合复用优点&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;它维持了类的封装性。因为成分对象的内部细节是新对象看不见的，所以这种复用又称为“黑箱”复用。&lt;/li&gt;
+&lt;li&gt;新旧类之间的耦合度低。这种复用所需的依赖较少，新对象存取成分对象的唯一方法是通过成分对象的接口。&lt;/li&gt;
+&lt;li&gt;复用的灵活性高。这种复用可以在运行时动态进行，新对象可以动态地引用与成分对象类型相同的对象。&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
+    <item>
+      <title>011-Interface-Segregation-Principle</title>
+      <link>/posts/principles/011-isp/</link>
+      <pubDate>Fri, 28 Aug 2020 22:09:40 +0800</pubDate>
+      <guid>/posts/principles/011-isp/</guid>
+      <description>&lt;h3 id=&#34;接口隔离原则&#34;&gt;接口隔离原则&lt;/h3&gt;
+&lt;p&gt;接口隔离原则（Interface Segregation Principle，ISP）要求程序员尽量将臃肿庞大的接口拆分成更小的和更具体的接口，让接口中只包含客户感兴趣的方法。&lt;/p&gt;
+&lt;p&gt;2002 年罗伯特·C.马丁给“接口隔离原则”的定义是：客户端不应该被迫依赖于它不使用的方法（Clients should not be forced to depend on methods they do not use）。该原则还有另外一个定义：一个类对另一个类的依赖应该建立在最小的接口上（The dependency of one class to another one should depend on the smallest possible interface）。&lt;/p&gt;
+&lt;p&gt;以上两个定义的含义是：要为各个类建立它们需要的专用接口，而不要试图去建立一个很庞大的接口供所有依赖它的类去调用。&lt;/p&gt;
+&lt;p&gt;接口隔离原则和单一职责都是为了提高类的内聚性、降低它们之间的耦合性，体现了封装的思想，但两者是不同的：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;单一职责原则注重的是职责，而接口隔离原则注重的是对接口依赖的隔离。&lt;/li&gt;
+&lt;li&gt;单一职责原则主要是约束类，它针对的是程序中的实现和细节；接口隔离原则主要约束接口，主要针对抽象和程序整体框架的构建。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;接口隔离原则的优点&#34;&gt;接口隔离原则的优点&lt;/h4&gt;
+&lt;p&gt;接口隔离原则是为了约束接口、降低类对接口的依赖性，遵循接口隔离原则有以下 5 个优点。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;将臃肿庞大的接口分解为多个粒度小的接口，可以预防外来变更的扩散，提高系统的灵活性和可维护性。&lt;/li&gt;
+&lt;li&gt;接口隔离提高了系统的内聚性，减少了对外交互，降低了系统的耦合性。&lt;/li&gt;
+&lt;li&gt;如果接口的粒度大小定义合理，能够保证系统的稳定性；但是，如果定义过小，则会造成接口数量过多，使设计复杂化；如果定义太大，灵活性降低，无法提供定制服务，给整体项目带来无法预料的风险。&lt;/li&gt;
+&lt;li&gt;使用多个专门的接口还能够体现对象的层次，因为可以通过接口的继承，实现对总接口的定义。&lt;/li&gt;
+&lt;li&gt;能减少项目工程中的代码冗余。过大的大接口里面通常放置许多不用的方法，当实现这个接口的时候，被迫设计冗余的代码。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;接口隔离原则的实现方法&#34;&gt;接口隔离原则的实现方法&lt;/h4&gt;
+&lt;p&gt;在具体应用接口隔离原则时，应该根据以下几个规则来衡量。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;接口尽量小，但是要有限度。一个接口只服务于一个子模块或业务逻辑。&lt;/li&gt;
+&lt;li&gt;为依赖接口的类定制服务。只提供调用者需要的方法，屏蔽不需要的方法。&lt;/li&gt;
+&lt;li&gt;了解环境，拒绝盲从。每个项目或产品都有选定的环境因素，环境不同，接口拆分的标准就不同深入了解业务逻辑。&lt;/li&gt;
+&lt;li&gt;提高内聚，减少对外交互。使接口用最少的方法去完成最多的事情。&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
+    <item>
+      <title>010-Liskov-Substitution-Principle</title>
+      <link>/posts/principles/010-lsp/</link>
+      <pubDate>Wed, 26 Aug 2020 23:07:52 +0800</pubDate>
+      <guid>/posts/principles/010-lsp/</guid>
+      <description>&lt;h3 id=&#34;里氏替换原则liskov-substitution-principlelsp&#34;&gt;里氏替换原则（Liskov Substitution Principle，LSP）&lt;/h3&gt;
+&lt;p&gt;里氏替换原则（Liskov Substitution Principle，LSP）由麻省理工学院计算机科学实验室的里斯科夫（Liskov）女士在 1987 年的“面向对象技术的高峰会议”（OOPSLA）上发表的一篇文章《数据抽象和层次》（Data Abstraction and Hierarchy）里提出来的，她提出：继承必须确保超类所拥有的性质在子类中仍然成立（Inheritance should ensure that any property proved about supertype objects also holds for subtype objects）。&lt;/p&gt;
+&lt;p&gt;里氏替换原则主要阐述了有关继承的一些原则，也就是什么时候应该使用继承，什么时候不应该使用继承，以及其中蕴含的原理。里氏替换原是继承复用的基础，它反映了基类与子类之间的关系，是对开闭原则的补充，是对实现抽象化的具体步骤的规范。&lt;/p&gt;
+&lt;h3 id=&#34;里氏替换原则的作用&#34;&gt;里氏替换原则的作用&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;里氏替换原则是实现开闭原则的重要方式之一&lt;/li&gt;
+&lt;li&gt;它克服了继承中重写父类造成的可复用性变差的缺点&lt;/li&gt;
+&lt;li&gt;它是动作正确性的保证。即类的扩展不会给已有的系统引入新的错误，降低了代码出错的可能性&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;里氏替换原则的实现方法&#34;&gt;里氏替换原则的实现方法&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;里氏替换原则通俗来讲就是：子类可以扩展父类的功能，但不能改变父类原有的功能&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;如果通过重写父类的方法来完成新的功能，这样写起来虽然简单，但是整个继承体系的可复用性会比较差，特别是运用多态比较频繁时，程序运行出错的概率会非常大。&lt;/p&gt;
+&lt;p&gt;如果程序违背了里氏替换原则，则继承类的对象在基类出现的地方会出现运行错误。这时其修正方法是：取消原来的继承关系，重新设计它们之间的关系。&lt;/p&gt;
+&lt;p&gt;关于里氏替换原则的例子，最有名的是“正方形不是长方形”。当然，生活中也有很多类似的例子，例如，企鹅、鸵鸟和几维鸟从生物学的角度来划分，它们属于鸟类；但从类的继承关系来看，由于它们不能继承“鸟”会飞的功能，所以它们不能定义成“鸟”的子类。同样，由于“气球鱼”不会游泳，所以不能定义成“鱼”的子类；“玩具炮”炸不了敌人，所以不能定义成“炮”的子类等。&lt;/p&gt;
+&lt;p&gt;【例2】里氏替换原则在“几维鸟不是鸟”实例中的应用。&lt;/p&gt;
+&lt;p&gt;分析：鸟一般都会飞行，如燕子的飞行速度大概是每小时 120 千米。但是新西兰的几维鸟由于翅膀退化无法飞行，飞行速度为0km。假如要设计一个实例，计算这两种鸟飞行 300 千米要花费的时间。显然，拿燕子来测试这段代码，结果正确，能计算出所需要的时间；但拿几维鸟来测试，结果会发生“除零异常”或是“无穷大”，明显不符合预期。&lt;/p&gt;
+&lt;p&gt;如下图一：&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&#34;2024-08-22-17-17-53&#34; loading=&#34;lazy&#34; src=&#34;https://img.zlog.fun/static/2024-08-22-17-17-53.png&#34;&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;package&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;principles&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;testing&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;type&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;Bird&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;struct&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#a6e22e&#34;&gt;flySpeed&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;func&lt;/span&gt; (&lt;span style=&#34;color:#a6e22e&#34;&gt;b&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;Bird&lt;/span&gt;) &lt;span style=&#34;color:#a6e22e&#34;&gt;SetSpeed&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;speed&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt;) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#a6e22e&#34;&gt;b&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;flySpeed&lt;/span&gt; = &lt;span style=&#34;color:#a6e22e&#34;&gt;speed&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;func&lt;/span&gt; (&lt;span style=&#34;color:#a6e22e&#34;&gt;b&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;Bird&lt;/span&gt;) &lt;span style=&#34;color:#a6e22e&#34;&gt;GetFlyTime&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;distance&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt;) &lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;distance&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;/&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;b&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;flySpeed&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;type&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;Swallow&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;struct&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#a6e22e&#34;&gt;Bird&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;type&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;BrownKiwi&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;struct&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#a6e22e&#34;&gt;Bird&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;func&lt;/span&gt; (&lt;span style=&#34;color:#a6e22e&#34;&gt;b&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;BrownKiwi&lt;/span&gt;) &lt;span style=&#34;color:#a6e22e&#34;&gt;SetSpeed&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;speed&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt;) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#a6e22e&#34;&gt;b&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;Bird&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;flySpeed&lt;/span&gt; = &lt;span style=&#34;color:#a6e22e&#34;&gt;speed&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;func&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;TestSwallow&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;t&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;testing&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;T&lt;/span&gt;) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#75715e&#34;&gt;// 创建一个燕子&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#a6e22e&#34;&gt;swallow&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;:=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;Swallow&lt;/span&gt;{}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#a6e22e&#34;&gt;swallow&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;Bird&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;SetSpeed&lt;/span&gt;(&lt;span style=&#34;color:#ae81ff&#34;&gt;120&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#a6e22e&#34;&gt;t&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;Log&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;swallow:&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;swallow&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;GetFlyTime&lt;/span&gt;(&lt;span style=&#34;color:#ae81ff&#34;&gt;600&lt;/span&gt;), &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;km/s&amp;#34;&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#75715e&#34;&gt;// 创建一个kiwi  这个代码会报错，几维鸟不会飞哈哈&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#75715e&#34;&gt;// brownKiwi := BrownKiwi{}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#75715e&#34;&gt;// brownKiwi.SetSpeed(0)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#75715e&#34;&gt;// t.Log(&amp;#34;brownKiwi:&amp;#34;, brownKiwi.GetFlyTime(600), &amp;#34;km/s&amp;#34;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;输出内容&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>009-Law-of-Demete</title>
+      <link>/posts/principles/009-lod/</link>
+      <pubDate>Tue, 18 Aug 2020 06:36:00 +0800</pubDate>
+      <guid>/posts/principles/009-lod/</guid>
+      <description>&lt;h3 id=&#34;lod-迪米特法则&#34;&gt;LOD 迪米特法则&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;迪米特法则(Law of Demeter, LOD)，有时候也叫做最少知识原则(Least Knowledge Principle, LKP)，它的定义是: 一个软件实体应当尽可能少地与其它实体发生相互作用。产生于 1987 年美国东北大学（Northeastern University）的一个名为迪米特（Demeter）的研究项目，由伊恩·荷兰（Ian Holland）提出，被 UML 创始者之一的布奇（Booch）普及，后来又因为在经典著作《程序员修炼之道》（The Pragmatic Programmer）提及而广为人知。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;迪米特法则的定义是：只与你的直接朋友交谈，不跟“陌生人”说话（Talk only to your immediate friends and not to strangers）。其含义是：如果两个软件实体无须直接通信，那么就不应当发生直接的相互调用，可以通过第三方转发该调用。其目的是降低类之间的耦合度，提高模块的相对独立性。&lt;/p&gt;
+&lt;p&gt;迪米特法则中的“朋友”是指：当前对象本身、当前对象的成员对象、当前对象所创建的对象、当前对象的方法参数等，这些对象同当前对象存在关联、聚合或组合关系，可以直接访问这些对象的方法。&lt;/p&gt;
+&lt;h4 id=&#34;迪米特法则的优点&#34;&gt;迪米特法则的优点&lt;/h4&gt;
+&lt;p&gt;迪米特法则要求限制软件实体之间通信的宽度和深度，正确使用迪米特法则将有以下两个优点。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;降低了类之间的耦合度，提高了模块的相对独立性。&lt;/li&gt;
+&lt;li&gt;由于亲合度降低，从而提高了类的可复用率和系统的扩展性。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;但是，过度使用迪米特法则会使系统产生大量的中介类，从而增加系统的复杂性，使模块之间的通信效率降低。所以，在釆用迪米特法则时需要反复权衡，确保高内聚和低耦合的同时，保证系统的结构清晰。&lt;/p&gt;
+&lt;h4 id=&#34;迪米特法则的实现方法&#34;&gt;迪米特法则的实现方法&lt;/h4&gt;
+&lt;p&gt;从迪米特法则的定义和特点可知，它强调以下两点：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;从依赖者的角度来说，只依赖应该依赖的对象。&lt;/li&gt;
+&lt;li&gt;从被依赖者的角度说，只暴露应该暴露的方法。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;在运用迪米特法则时要注意以下 6 点：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;在类的划分上，应该创建弱耦合的类。类与类之间的耦合越弱，就越有利于实现可复用的目标。&lt;/li&gt;
+&lt;li&gt;在类的结构设计上，尽量降低类成员的访问权限。&lt;/li&gt;
+&lt;li&gt;在类的设计上，优先考虑将一个类设置成不变类。&lt;/li&gt;
+&lt;li&gt;在对其他类的引用上，将引用其他对象的次数降到最低。&lt;/li&gt;
+&lt;li&gt;不暴露类的属性成员，而应该提供相应的访问器（set 和 get 方法）&lt;/li&gt;
+&lt;li&gt;谨慎使用序列化（Serializable）功能。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4 id=&#34;实例说明&#34;&gt;实例说明&lt;/h4&gt;
+&lt;p&gt;明星与经纪人的关系实例&lt;/p&gt;
+&lt;p&gt;分析：星由于全身心投入艺术，所以许多日常事务由经纪人负责处理，如与粉丝的见面会，与媒体公司的业务洽淡等。这里的经纪人是明星的朋友，而粉丝和媒体公司是陌生人，所以适合使用迪米特法则，类图如下&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&#34;image-20200825064902417&#34; loading=&#34;lazy&#34; src=&#34;lod.gif&#34;&gt;&lt;/p&gt;
+&lt;p&gt;代码实例：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;package&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;principles&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; (
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;fmt&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;testing&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;// 明星&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;type&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;Star&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;struct&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#a6e22e&#34;&gt;name&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;string&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;func&lt;/span&gt; (&lt;span style=&#34;color:#a6e22e&#34;&gt;s&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;Star&lt;/span&gt;) &lt;span style=&#34;color:#a6e22e&#34;&gt;getName&lt;/span&gt;() &lt;span style=&#34;color:#66d9ef&#34;&gt;string&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;s&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;name&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;// 公司&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;type&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;Company&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;struct&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#a6e22e&#34;&gt;name&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;string&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;func&lt;/span&gt; (&lt;span style=&#34;color:#a6e22e&#34;&gt;s&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;Company&lt;/span&gt;) &lt;span style=&#34;color:#a6e22e&#34;&gt;getName&lt;/span&gt;() &lt;span style=&#34;color:#66d9ef&#34;&gt;string&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;s&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;name&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;// 粉丝&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;type&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;Fans&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;struct&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#a6e22e&#34;&gt;name&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;string&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;func&lt;/span&gt; (&lt;span style=&#34;color:#a6e22e&#34;&gt;s&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;Fans&lt;/span&gt;) &lt;span style=&#34;color:#a6e22e&#34;&gt;getName&lt;/span&gt;() &lt;span style=&#34;color:#66d9ef&#34;&gt;string&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;s&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;name&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;// 经纪人&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;type&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;Agent&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;struct&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#a6e22e&#34;&gt;myStar&lt;/span&gt;    &lt;span style=&#34;color:#a6e22e&#34;&gt;Star&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#a6e22e&#34;&gt;myCompany&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;Company&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#a6e22e&#34;&gt;myFans&lt;/span&gt;    &lt;span style=&#34;color:#a6e22e&#34;&gt;Fans&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;func&lt;/span&gt; (&lt;span style=&#34;color:#a6e22e&#34;&gt;a&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;Agent&lt;/span&gt;) &lt;span style=&#34;color:#a6e22e&#34;&gt;meeting&lt;/span&gt;() {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#a6e22e&#34;&gt;fmt&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;Println&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;a&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;myFans&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;getName&lt;/span&gt;(), &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;与&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;a&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;myStar&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;getName&lt;/span&gt;(), &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;见面了&amp;#34;&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;func&lt;/span&gt; (&lt;span style=&#34;color:#a6e22e&#34;&gt;a&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;Agent&lt;/span&gt;) &lt;span style=&#34;color:#a6e22e&#34;&gt;business&lt;/span&gt;() {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#a6e22e&#34;&gt;fmt&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;Println&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;明星&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;a&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;myStar&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;getName&lt;/span&gt;(), &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;去&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;a&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;myCompany&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;getName&lt;/span&gt;(), &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;参加跑男&amp;#34;&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;func&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;TestLAD&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;t&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;testing&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;T&lt;/span&gt;) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#a6e22e&#34;&gt;star&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;:=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;Star&lt;/span&gt;{&lt;span style=&#34;color:#a6e22e&#34;&gt;name&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;dengchao&amp;#34;&lt;/span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#a6e22e&#34;&gt;company&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;:=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;Company&lt;/span&gt;{&lt;span style=&#34;color:#a6e22e&#34;&gt;name&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;浙江卫士&amp;#34;&lt;/span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#a6e22e&#34;&gt;fans&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;:=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;Fans&lt;/span&gt;{&lt;span style=&#34;color:#a6e22e&#34;&gt;name&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;路人甲&amp;#34;&lt;/span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#a6e22e&#34;&gt;agent&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;:=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;Agent&lt;/span&gt;{
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		&lt;span style=&#34;color:#a6e22e&#34;&gt;myStar&lt;/span&gt;:    &lt;span style=&#34;color:#a6e22e&#34;&gt;star&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		&lt;span style=&#34;color:#a6e22e&#34;&gt;myCompany&lt;/span&gt;: &lt;span style=&#34;color:#a6e22e&#34;&gt;company&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		&lt;span style=&#34;color:#a6e22e&#34;&gt;myFans&lt;/span&gt;:    &lt;span style=&#34;color:#a6e22e&#34;&gt;fans&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#a6e22e&#34;&gt;agent&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;meeting&lt;/span&gt;()
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#a6e22e&#34;&gt;agent&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;business&lt;/span&gt;()
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;输出内容&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>008 Dependency Inversion Principle</title>
+      <link>/posts/principles/008-dependency_inversion_principle/</link>
+      <pubDate>Thu, 13 Aug 2020 22:29:14 +0800</pubDate>
+      <guid>/posts/principles/008-dependency_inversion_principle/</guid>
+      <description>&lt;h3 id=&#34;依赖倒置原则&#34;&gt;依赖倒置原则&lt;/h3&gt;
+&lt;p&gt;依赖倒置原则(DIP)由Robert C. Martin在1996年在 &lt;a href=&#34;http://butunclebob.com/ArticleS.UncleBob.PrinciplesOfOod&#34;&gt;Dependency Inversion Principle&lt;/a&gt;中提出，他对此定义如下:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;em&gt;High level modules should not depend on low level modules. Both should depend on abstractions. Abstractions should not depend upon details. Details should depend on abstractions&lt;/em&gt;
+&lt;em&gt;Robert C. Martin&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;顶层模块不应该依赖底层模块。这2者都应该依赖于抽象。抽象不应该依赖于细节。细节应该依赖于抽象。&lt;/em&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;程序要依赖于抽象接口，不要依赖于具体实现。简单的说就是要求对抽象进行编程，不要对实现进行编程。也被称作好莱坞原则：Don’t call me，I will call you.其核心思想是:&lt;strong&gt;要面向接口编程，不要面向实现编程。&lt;/strong&gt;&lt;/p&gt;
+&lt;h4 id=&#34;下面我看一个实例&#34;&gt;下面我看一个实例&lt;/h4&gt;
+&lt;p&gt;Example:张三开车的例子，张三是一名司机，可以开不不同品牌的汽车。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;// 面向对象设计原则：DIP依赖倒置原则&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;// 司机可开任何汽车——依赖抽象/接口&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;// 汽车 Interface&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;type&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;ICar&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;interface&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#a6e22e&#34;&gt;run&lt;/span&gt;()
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;type&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;Camary&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;struct&lt;/span&gt;{}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;func&lt;/span&gt; (&lt;span style=&#34;color:#a6e22e&#34;&gt;C&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;Camary&lt;/span&gt;) &lt;span style=&#34;color:#a6e22e&#34;&gt;run&lt;/span&gt;() {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#a6e22e&#34;&gt;fmt&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;Println&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Camary runing&amp;#34;&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;type&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;Benz&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;struct&lt;/span&gt;{}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;func&lt;/span&gt; (&lt;span style=&#34;color:#a6e22e&#34;&gt;C&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;Benz&lt;/span&gt;) &lt;span style=&#34;color:#a6e22e&#34;&gt;run&lt;/span&gt;() {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#a6e22e&#34;&gt;fmt&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;Println&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Benz runing&amp;#34;&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;// 司机 Interface&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;type&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;IDriver&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;interface&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#75715e&#34;&gt;// 司机会驾驶的汽车&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#a6e22e&#34;&gt;Ddrive&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;car&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;ICar&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;type&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;Driver&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;struct&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#a6e22e&#34;&gt;Name&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;string&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;func&lt;/span&gt; (&lt;span style=&#34;color:#a6e22e&#34;&gt;D&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;Driver&lt;/span&gt;) &lt;span style=&#34;color:#a6e22e&#34;&gt;Ddrive&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;car&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;ICar&lt;/span&gt;) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#a6e22e&#34;&gt;fmt&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;Println&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;D&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;Name&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#a6e22e&#34;&gt;car&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;run&lt;/span&gt;()
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;调用&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>007 Single Responsibility Principle</title>
+      <link>/posts/principles/007-single-responsibility-principle/</link>
+      <pubDate>Fri, 31 Jul 2020 22:51:03 +0800</pubDate>
+      <guid>/posts/principles/007-single-responsibility-principle/</guid>
+      <description>&lt;h2&gt;&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;软件设计的两个基本准则：低耦合和高内聚&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;什么是单一职责原则&#34;&gt;什么是单一职责原则&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;单一职责原则，指的是一个类或者模块有只有一 个改变的原因。&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;单一职责可以降低类的复杂性，提高代码可读性、可维护性&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;我们举例说明单一职责， 看下面一段代码,我们实现一个开关，开灯关灯的实例&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;const&lt;/span&gt; (
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#75715e&#34;&gt;// 打开状态&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#a6e22e&#34;&gt;STATE_OK&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; = &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#75715e&#34;&gt;// 关闭状态&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#a6e22e&#34;&gt;STATE_ON&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; = &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;// 开关&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;type&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;Button&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;interface&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#75715e&#34;&gt;// 获取状态&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#a6e22e&#34;&gt;GetState&lt;/span&gt;() &lt;span style=&#34;color:#66d9ef&#34;&gt;string&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#75715e&#34;&gt;// 设置状态&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#a6e22e&#34;&gt;SetState&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;// 灯泡&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;type&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;Lamp&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;struct&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#a6e22e&#34;&gt;State&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;string&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;// 获取灯泡状态&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;func&lt;/span&gt; (&lt;span style=&#34;color:#a6e22e&#34;&gt;b&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;Lamp&lt;/span&gt;) &lt;span style=&#34;color:#a6e22e&#34;&gt;GetState&lt;/span&gt;() &lt;span style=&#34;color:#66d9ef&#34;&gt;string&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;b&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;State&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;// 设置灯泡状态&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;func&lt;/span&gt; (&lt;span style=&#34;color:#a6e22e&#34;&gt;b&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;Lamp&lt;/span&gt;) &lt;span style=&#34;color:#a6e22e&#34;&gt;SetState&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;state&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt;) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#66d9ef&#34;&gt;switch&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;state&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#66d9ef&#34;&gt;case&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;STATE_OK&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		&lt;span style=&#34;color:#a6e22e&#34;&gt;b&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;State&lt;/span&gt; = &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;开灯&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#66d9ef&#34;&gt;case&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;STATE_ON&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		&lt;span style=&#34;color:#a6e22e&#34;&gt;b&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;State&lt;/span&gt; = &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;关灯&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#66d9ef&#34;&gt;default&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		&lt;span style=&#34;color:#a6e22e&#34;&gt;b&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;State&lt;/span&gt; = &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;未知状态&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;调用代码&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;btn&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;principles&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;Button&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#a6e22e&#34;&gt;lamp&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;:=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;principles&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;Lamp&lt;/span&gt;{&lt;span style=&#34;color:#a6e22e&#34;&gt;State&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;关灯&amp;#34;&lt;/span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#75715e&#34;&gt;// 实现组合&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#a6e22e&#34;&gt;btn&lt;/span&gt; = &lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;lamp&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#75715e&#34;&gt;// 开灯&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#a6e22e&#34;&gt;btn&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;SetState&lt;/span&gt;(&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#a6e22e&#34;&gt;t&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;Log&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;灯泡状态：&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;btn&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;GetState&lt;/span&gt;())
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#75715e&#34;&gt;// 关灯&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#a6e22e&#34;&gt;btn&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;SetState&lt;/span&gt;(&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#a6e22e&#34;&gt;t&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;Log&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;灯泡状态：&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;btn&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;GetState&lt;/span&gt;())
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;----------&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;==&lt;/span&gt;= &lt;span style=&#34;color:#a6e22e&#34;&gt;RUN&lt;/span&gt;   &lt;span style=&#34;color:#a6e22e&#34;&gt;TestButton_SetName&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;---&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;PASS&lt;/span&gt;: &lt;span style=&#34;color:#a6e22e&#34;&gt;TestButton_SetName&lt;/span&gt; (&lt;span style=&#34;color:#ae81ff&#34;&gt;0.00&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;s&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#a6e22e&#34;&gt;principles_test&lt;/span&gt;.&lt;span style=&#34;color:#66d9ef&#34;&gt;go&lt;/span&gt;:&lt;span style=&#34;color:#ae81ff&#34;&gt;122&lt;/span&gt;: &lt;span style=&#34;color:#a6e22e&#34;&gt;灯泡状态&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;：&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;开灯&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#a6e22e&#34;&gt;principles_test&lt;/span&gt;.&lt;span style=&#34;color:#66d9ef&#34;&gt;go&lt;/span&gt;:&lt;span style=&#34;color:#ae81ff&#34;&gt;126&lt;/span&gt;: &lt;span style=&#34;color:#a6e22e&#34;&gt;灯泡状态&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;：&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;关灯&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;在SetState这种实现在我们代码中就经常看见，由switch..case 的当时进行状态或逻辑处理。这里可以看出，我们这个函数是担任多个职责的，如果再新增一个状态，就要修个这个代码。如果是在复杂的代码中会变的难以维护。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>006 Open Close Principle</title>
+      <link>/posts/principles/006-open-close-principle/</link>
+      <pubDate>Tue, 28 Jul 2020 22:17:45 +0800</pubDate>
+      <guid>/posts/principles/006-open-close-principle/</guid>
+      <description>&lt;h2 id=&#34;开闭原则实践&#34;&gt;开闭原则实践&lt;/h2&gt;
+&lt;p&gt;开闭原则（Open Close Principle），开闭原则就是说对扩展开放，对修改关闭。在程序需要进行拓展的时候，不能去修改原有的代码，实现一个热插拔的效果。 所以一句话概括就是：为了使程序的扩展性好，易于维护和升级。原文是这样的：Software entities should be open for extension，but closed for modification&lt;/p&gt;
+&lt;p&gt;我们举例说明什么是开闭原则，以4s店销售汽车为例，其类图如图所示:&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&#34;006-open-close-principle.md-2024-08-22-17-20-46&#34; loading=&#34;lazy&#34; src=&#34;https://img.zlog.fun/static//Users/yuzl/Workspace/private/book.zlog.fun/content/posts/principles/006-open-close-principle.md-2024-08-22-17-20-46.png&#34;&gt;
+以下我们以go语言实践如下列子&lt;/p&gt;
+&lt;p&gt;ICar接口定义了汽车的两个属性：名称和价格。AudiCar是一个奥迪车的实现类，代表奥迪车的总称。Shop4S代表售卖的4S店&lt;/p&gt;
+&lt;p&gt;ICar接口的代码清单如下&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;type&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;ICar&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;interface&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#75715e&#34;&gt;// 车名&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#a6e22e&#34;&gt;GetName&lt;/span&gt;() &lt;span style=&#34;color:#66d9ef&#34;&gt;string&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#75715e&#34;&gt;// 价格&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#a6e22e&#34;&gt;GetPrice&lt;/span&gt;() &lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;一般情况下4S店只出售一种品牌的车，这里用奥迪为例，代码清单如下&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;type&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;AudiCar&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;struct&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#a6e22e&#34;&gt;name&lt;/span&gt;  &lt;span style=&#34;color:#66d9ef&#34;&gt;string&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#a6e22e&#34;&gt;price&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;func&lt;/span&gt; (&lt;span style=&#34;color:#a6e22e&#34;&gt;b&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;AudiCar&lt;/span&gt;) &lt;span style=&#34;color:#a6e22e&#34;&gt;GetName&lt;/span&gt;() &lt;span style=&#34;color:#66d9ef&#34;&gt;string&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;b&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;name&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;func&lt;/span&gt; (&lt;span style=&#34;color:#a6e22e&#34;&gt;b&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;AudiCar&lt;/span&gt;) &lt;span style=&#34;color:#a6e22e&#34;&gt;GetPrice&lt;/span&gt;() &lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;b&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;price&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;这里我们模拟一下4s店售车记录，写个测试&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;func&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;TestAudi_GetName&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;t&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;testing&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;T&lt;/span&gt;) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; (
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		&lt;span style=&#34;color:#a6e22e&#34;&gt;list&lt;/span&gt; []&lt;span style=&#34;color:#a6e22e&#34;&gt;ICar&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#a6e22e&#34;&gt;list&lt;/span&gt; = []&lt;span style=&#34;color:#a6e22e&#34;&gt;ICar&lt;/span&gt;{}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#a6e22e&#34;&gt;list&lt;/span&gt; = append(&lt;span style=&#34;color:#a6e22e&#34;&gt;list&lt;/span&gt;, &lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;AudiCar&lt;/span&gt;{&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;A6&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;130&lt;/span&gt;})
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#a6e22e&#34;&gt;list&lt;/span&gt; = append(&lt;span style=&#34;color:#a6e22e&#34;&gt;list&lt;/span&gt;, &lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;AudiCar&lt;/span&gt;{&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;A8&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;343&lt;/span&gt;})
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#a6e22e&#34;&gt;list&lt;/span&gt; = append(&lt;span style=&#34;color:#a6e22e&#34;&gt;list&lt;/span&gt;, &lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;AudiCar&lt;/span&gt;{&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;TT&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;60&lt;/span&gt;})
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;_&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;v&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;:=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;range&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;list&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		&lt;span style=&#34;color:#a6e22e&#34;&gt;fmt&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;Println&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;车名:&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;v&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;GetName&lt;/span&gt;(), &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;\t价格:&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;v&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;GetPrice&lt;/span&gt;())
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;输出的结果&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>005 Design_principles</title>
+      <link>/posts/principles/005-design_principles/</link>
+      <pubDate>Wed, 22 Jul 2020 22:18:33 +0800</pubDate>
+      <guid>/posts/principles/005-design_principles/</guid>
+      <description>&lt;h2 id=&#34;面向对象的设计原则&#34;&gt;面向对象的设计原则&lt;/h2&gt;
+&lt;p&gt;设计原则是2002年 罗伯特·塞西尔·马丁 (Robert Cecil Martin)俗称“鲍伯叔叔” &lt;a href=&#34;https://item.jd.com/12468135.html&#34;&gt;敏捷软件开发：原则、模式与实践/软件工程实践丛书&lt;/a&gt;书中提到可重用的五大设计原则 - “SOLID”（英文首字母缩略字）:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Single Responsibility Principle - 单一职责&lt;/li&gt;
+&lt;li&gt;Open / Closed Principle - 开闭原则&lt;/li&gt;
+&lt;li&gt;Liskov Substitution Principle - 里氏替换原则&lt;/li&gt;
+&lt;li&gt;Interface Segregation Principle - 接口隔离原则&lt;/li&gt;
+&lt;li&gt;Dependency Inversion Principle - 依赖倒置原则&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;一单一职责原则&#34;&gt;一、单一职责原则&lt;/h3&gt;
+&lt;p&gt;该原则提出对象不应该承担太多职责，如果一个对象承担了太多的职责，至少存在以下两个缺点：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;一个职责的变化可能会削弱或者抑制这个类实现其他职责的能力；&lt;/li&gt;
+&lt;li&gt;当客户端需要该对象的某一个职责时，不得不将其他不需要的职责全都包含进来，从而造成冗余代码或代码的浪费。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;单一职责的核心就是控制类的粒度大小、将对象解耦、提高其内聚性&lt;/p&gt;
+&lt;h4 id=&#34;1单一职责的优点&#34;&gt;1、单一职责的优点&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;降低类的复杂度。一个类只负责一项职责，其逻辑肯定要比负责多项职责简单得多。&lt;/li&gt;
+&lt;li&gt;提高类的可读性。复杂性降低，自然其可读性会提高。&lt;/li&gt;
+&lt;li&gt;提高系统的可维护性。可读性提高，那自然更容易维护了。&lt;/li&gt;
+&lt;li&gt;变更引起的风险降低。变更是必然的，如果单一职责原则遵守得好，当修改一个功能时，可以显著降低对其他功能的影响。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;2单一职责原则的实现方法&#34;&gt;2、单一职责原则的实现方法&lt;/h4&gt;
+&lt;p&gt;单一职责原则是最简单但又最难运用的原则，需要设计人员发现类的不同职责并将其分离，再封装到不同的类或模块中。而发现类的多重职责需要设计人员具有较强的分析设计能力和相关重构经验。&lt;/p&gt;
+&lt;h3 id=&#34;二开闭原则&#34;&gt;二、开闭原则&lt;/h3&gt;
+&lt;p&gt;开闭原则（OCP）即对修改关闭，扩展开放。代码模块应该在修改代码的的情况下，进行代码的扩展。一般需要通过接口和抽象实现该效果。
+开闭原则的含义是当应用的需求改变时，在不修改软件实体代码的源代码或二进制代码的前提下，可以扩展模块功能以满足需求。&lt;/p&gt;
+&lt;h4 id=&#34;1开闭原则的作用&#34;&gt;1、开闭原则的作用&lt;/h4&gt;
+&lt;p&gt;开闭原则是面向对象设计的终极目标，它使软件设计有一定的适应性和灵活性。其作用如下：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;对软件测试的影响&lt;/p&gt;
+&lt;p&gt;遵守原则的情况下，测试可以只对扩展代码进行测试&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;可以提高代码的可复用性&lt;/p&gt;
+&lt;p&gt;遵守原则，粒度越小，被复用的可能性越大&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;可以提高软件的可维护性&lt;/p&gt;
+&lt;p&gt;遵守原则，其稳定性高，持续性强，从而易于维护和扩展&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;2开闭原则的实现方法&#34;&gt;2、开闭原则的实现方法&lt;/h4&gt;
+&lt;p&gt;可以通过“抽象约束、封装变化”来实现开闭原则，即通过接口或者抽象类为软件实体定义一个相对稳定的抽象层，而将相同的可变因素封装在相同的具体实现类中&lt;/p&gt;
+&lt;p&gt;因为抽象灵活性好，适应性广，只要抽象的合理，可以基本保持软件架构的稳定。而软件中易变的细节可以从抽象派生来的实现类来进行扩展，当软件需要发生变化时，只需要根据需求重新派生一个实现类来扩展就可以了。&lt;/p&gt;
+&lt;p&gt;下面以 汽车和4S店为例介绍开闭原则的应用。
+分析：4s店销售各种型号品牌的汽车，汽车的价格、型号不一样。这些汽车有共同的属性，抽象出一个汽车分类。4s店进一个新型号的汽车，实现这个抽象类就可以，不影响其他型号。如下图所示
+&lt;img alt=&#34;avatar&#34; loading=&#34;lazy&#34; src=&#34;open-close.png&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;三里氏替换原则&#34;&gt;三、里氏替换原则&lt;/h3&gt;
+&lt;p&gt;里氏替换原则主要阐述了有关继承的一些原则，也就是什么时候应该使用继承，什么时候不应该使用继承，以及其中蕴含的原理。里氏替换原是继承复用的基础，它反映了基类与子类之间的关系，是对开闭原则的补充，是对实现抽象化的具体步骤的规范。&lt;/p&gt;
+&lt;h4 id=&#34;1里氏替换原则的作用&#34;&gt;1、里氏替换原则的作用&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;里氏替换原则是实现开闭原则的重要方式之一&lt;/li&gt;
+&lt;li&gt;它克服了继承中重写父类造成的可复用性变差的缺点&lt;/li&gt;
+&lt;li&gt;它是动作正确性的保证。即类的扩展不会给已有的系统引入新的错误，降低了代码出错的可能性。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;2里氏替换原则的实现方法&#34;&gt;2、里氏替换原则的实现方法&lt;/h4&gt;
+&lt;p&gt;里氏替换原则通俗来讲就是：子类可以扩展父类的功能，但不能改变父类原有的功能。也就是说：子类继承父类时，除添加新的方法完成新增功能外，尽量不要重写父类的方法。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>golang快速入门(4) Array &amp; Slice</title>
+      <link>/posts/golang/004-golearning/</link>
+      <pubDate>Tue, 09 Jun 2020 23:14:36 +0800</pubDate>
+      <guid>/posts/golang/004-golearning/</guid>
+      <description>&lt;p&gt;本节主要介绍数组(array)与切片(slice)，也比较让人困惑。go语言数组与切片都属于集合类的类型。但数组类型的声明长度必须给定，而且之后不会再改变。切片的长度可以自动地随着其中元素数量的增长而增长，但不会随着元素数量的减少而减小。简而言之：&lt;strong&gt;数组是固定长度，切片是可变长度。&lt;/strong&gt; go语言中切片可以看成数组的一个特例，这里表达不一定准备，大家自行体会吧。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Array的使用&lt;/li&gt;
+&lt;li&gt;Slice的使用&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;一array的使用&#34;&gt;一、Array的使用&lt;/h4&gt;
+&lt;h5 id=&#34;11-数组定义&#34;&gt;1.1 数组定义&lt;/h5&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;// 定一个长度位5的数组&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;arr&lt;/span&gt; [&lt;span style=&#34;color:#ae81ff&#34;&gt;5&lt;/span&gt;]&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#75715e&#34;&gt;// 初始化输出的数组会填充为0 [0 0 0 0 0]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#a6e22e&#34;&gt;fmt&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;Println&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;arr:&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;arr&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#75715e&#34;&gt;// 给下标为4的数组赋值&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#a6e22e&#34;&gt;arr&lt;/span&gt;[&lt;span style=&#34;color:#ae81ff&#34;&gt;4&lt;/span&gt;] = &lt;span style=&#34;color:#ae81ff&#34;&gt;100&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#75715e&#34;&gt;// 输出：set: [0 0 0 0 100]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#a6e22e&#34;&gt;fmt&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;Println&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;set:&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;arr&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#75715e&#34;&gt;// get: 100&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#a6e22e&#34;&gt;fmt&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;Println&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;get:&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;arr&lt;/span&gt;[&lt;span style=&#34;color:#ae81ff&#34;&gt;4&lt;/span&gt;])
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#75715e&#34;&gt;// len获取数组长度 len: 5&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#a6e22e&#34;&gt;fmt&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;Println&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;len:&amp;#34;&lt;/span&gt;, len(&lt;span style=&#34;color:#a6e22e&#34;&gt;arr&lt;/span&gt;))
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#75715e&#34;&gt;// 带有值的数组定义&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#a6e22e&#34;&gt;b&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;:=&lt;/span&gt; [&lt;span style=&#34;color:#ae81ff&#34;&gt;5&lt;/span&gt;]&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt;{&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;3&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;4&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;5&lt;/span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#75715e&#34;&gt;// dcl: [1 2 3 4 5]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#a6e22e&#34;&gt;fmt&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;Println&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;dcl:&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;b&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#75715e&#34;&gt;// 二维数组定义&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;twoD&lt;/span&gt; [&lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;][&lt;span style=&#34;color:#ae81ff&#34;&gt;3&lt;/span&gt;]&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;i&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;:=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;; &lt;span style=&#34;color:#a6e22e&#34;&gt;i&lt;/span&gt; &amp;lt; &lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;; &lt;span style=&#34;color:#a6e22e&#34;&gt;i&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;++&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		&lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;j&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;:=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;; &lt;span style=&#34;color:#a6e22e&#34;&gt;j&lt;/span&gt; &amp;lt; &lt;span style=&#34;color:#ae81ff&#34;&gt;3&lt;/span&gt;; &lt;span style=&#34;color:#a6e22e&#34;&gt;j&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;++&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;			&lt;span style=&#34;color:#a6e22e&#34;&gt;twoD&lt;/span&gt;[&lt;span style=&#34;color:#a6e22e&#34;&gt;i&lt;/span&gt;][&lt;span style=&#34;color:#a6e22e&#34;&gt;j&lt;/span&gt;] = &lt;span style=&#34;color:#a6e22e&#34;&gt;i&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;j&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#75715e&#34;&gt;// 2d:  [[0 1 2] [1 2 3]]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#a6e22e&#34;&gt;fmt&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;Println&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;2d: &amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;twoD&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h5 id=&#34;12-数组遍历&#34;&gt;1.2 数组遍历&lt;/h5&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;b&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;:=&lt;/span&gt; [&lt;span style=&#34;color:#ae81ff&#34;&gt;5&lt;/span&gt;]&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt;{&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;3&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;4&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;5&lt;/span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;// 普通的方式遍历&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;i&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;:=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;; &lt;span style=&#34;color:#a6e22e&#34;&gt;i&lt;/span&gt; &amp;lt; len(&lt;span style=&#34;color:#a6e22e&#34;&gt;b&lt;/span&gt;); &lt;span style=&#34;color:#a6e22e&#34;&gt;i&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;++&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#a6e22e&#34;&gt;fmt&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;Println&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;index:&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;i&lt;/span&gt;, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;value:&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;b&lt;/span&gt;[&lt;span style=&#34;color:#a6e22e&#34;&gt;i&lt;/span&gt;])
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;// 常见遍历方法&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;i&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;v&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;:=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;range&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;b&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#a6e22e&#34;&gt;fmt&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;Println&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;index:&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;i&lt;/span&gt;, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;value:&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;v&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h4 id=&#34;二slice的使用&#34;&gt;二、Slice的使用&lt;/h4&gt;
+&lt;p&gt;在go语言中，你看到的切片的应用，一定是比数组多的，应用更为灵活和广泛。是go语言中关键的数据类型，提供了比数组更强大的接口。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>golang快速入门(3) 流程控制</title>
+      <link>/posts/golang/003-golearning/</link>
+      <pubDate>Fri, 05 Jun 2020 23:04:06 +0800</pubDate>
+      <guid>/posts/golang/003-golearning/</guid>
+      <description>&lt;p&gt;go语言作为类C语言的一种，流程控制与其他编程语言没有什么不同，主要有以下几种控制结构&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;选择结构&lt;code&gt;if/Else&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;多分支选择结构&lt;code&gt;switch&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;循转结构&lt;code&gt;for&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;二选择结构&#34;&gt;二、选择结构&lt;/h4&gt;
+&lt;p&gt;条件语句是指定一个或多个条件，并通过测试条件是否为 true 来决定是否执行指定语句，并在条件为 false 的情况在执行另外的语句。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;package&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;main&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; (
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;fmt&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;func&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;main&lt;/span&gt;() {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#75715e&#34;&gt;// 1、简单选择结构&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;5&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;%&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;==&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		&lt;span style=&#34;color:#a6e22e&#34;&gt;fmt&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;Println&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;偶数&amp;#34;&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	} &lt;span style=&#34;color:#66d9ef&#34;&gt;else&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		&lt;span style=&#34;color:#a6e22e&#34;&gt;fmt&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;Println&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;奇数&amp;#34;&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#75715e&#34;&gt;// 2、可以不使用else&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;8&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;%&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;4&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;==&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		&lt;span style=&#34;color:#a6e22e&#34;&gt;fmt&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;Println&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;8 可以被 4 整除&amp;#34;&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#75715e&#34;&gt;// 3、可以在语句中定义&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;num&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;:=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;9&lt;/span&gt;; &lt;span style=&#34;color:#a6e22e&#34;&gt;num&lt;/span&gt; &amp;lt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		&lt;span style=&#34;color:#a6e22e&#34;&gt;fmt&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;Println&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;num&lt;/span&gt;, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;是一个负数&amp;#34;&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	} &lt;span style=&#34;color:#66d9ef&#34;&gt;else&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;num&lt;/span&gt; &amp;lt; &lt;span style=&#34;color:#ae81ff&#34;&gt;10&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		&lt;span style=&#34;color:#a6e22e&#34;&gt;fmt&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;Println&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;num&lt;/span&gt;, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;是个位数&amp;#34;&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	} &lt;span style=&#34;color:#66d9ef&#34;&gt;else&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		&lt;span style=&#34;color:#a6e22e&#34;&gt;fmt&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;Println&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;num&lt;/span&gt;, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;10位数以上的数组&amp;#34;&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;输出结果&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;奇数
+8 可以被 4 整除
+9 是个位数
+&lt;/code&gt;&lt;/pre&gt;&lt;h4 id=&#34;三多分支选择结构&#34;&gt;三、多分支选择结构&lt;/h4&gt;
+&lt;p&gt;go语言中的switch语句更加灵活多变。go语言的语句还可以做进行类型判断&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;package&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;main&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; (
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;fmt&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;time&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;func&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;main&lt;/span&gt;() {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#a6e22e&#34;&gt;i&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;:=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#a6e22e&#34;&gt;fmt&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;Print&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Write &amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;i&lt;/span&gt;, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34; as \n&amp;#34;&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#75715e&#34;&gt;// 1、go的switch 没有break&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#66d9ef&#34;&gt;switch&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;i&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#66d9ef&#34;&gt;case&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		&lt;span style=&#34;color:#a6e22e&#34;&gt;fmt&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;Println&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;one&amp;#34;&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#66d9ef&#34;&gt;case&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		&lt;span style=&#34;color:#75715e&#34;&gt;// 进入这个分支&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		&lt;span style=&#34;color:#a6e22e&#34;&gt;fmt&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;Println&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;two&amp;#34;&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#66d9ef&#34;&gt;case&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;3&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		&lt;span style=&#34;color:#a6e22e&#34;&gt;fmt&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;Println&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;three&amp;#34;&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#75715e&#34;&gt;// 2、可以在同一个case语句中用逗号分割，表示多个条件&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#66d9ef&#34;&gt;switch&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;time&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;Now&lt;/span&gt;().&lt;span style=&#34;color:#a6e22e&#34;&gt;Weekday&lt;/span&gt;() {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#66d9ef&#34;&gt;case&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;time&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;Saturday&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;time&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;Sunday&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		&lt;span style=&#34;color:#a6e22e&#34;&gt;fmt&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;Println&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;It&amp;#39;s the weekend&amp;#34;&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#66d9ef&#34;&gt;default&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		&lt;span style=&#34;color:#a6e22e&#34;&gt;fmt&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;Println&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;It&amp;#39;s a weekday&amp;#34;&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#75715e&#34;&gt;// 3、default 默认分支与if/else类似&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#a6e22e&#34;&gt;t&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;:=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;time&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;Now&lt;/span&gt;()
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#66d9ef&#34;&gt;switch&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#66d9ef&#34;&gt;case&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;t&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;Hour&lt;/span&gt;() &amp;lt; &lt;span style=&#34;color:#ae81ff&#34;&gt;12&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		&lt;span style=&#34;color:#a6e22e&#34;&gt;fmt&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;Println&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;It&amp;#39;s before noon&amp;#34;&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#66d9ef&#34;&gt;default&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		&lt;span style=&#34;color:#a6e22e&#34;&gt;fmt&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;Println&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;It&amp;#39;s after noon&amp;#34;&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#75715e&#34;&gt;// 4、实现类型检测&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#a6e22e&#34;&gt;whatAmI&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;:=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;func&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;i&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;interface&lt;/span&gt;{}) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		&lt;span style=&#34;color:#66d9ef&#34;&gt;switch&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;t&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;:=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;i&lt;/span&gt;.(&lt;span style=&#34;color:#66d9ef&#34;&gt;type&lt;/span&gt;) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		&lt;span style=&#34;color:#66d9ef&#34;&gt;case&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;bool&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;			&lt;span style=&#34;color:#a6e22e&#34;&gt;fmt&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;Println&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;I&amp;#39;m a bool&amp;#34;&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		&lt;span style=&#34;color:#66d9ef&#34;&gt;case&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;			&lt;span style=&#34;color:#a6e22e&#34;&gt;fmt&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;Println&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;I&amp;#39;m an int&amp;#34;&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		&lt;span style=&#34;color:#66d9ef&#34;&gt;default&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;			&lt;span style=&#34;color:#a6e22e&#34;&gt;fmt&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;Printf&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Don&amp;#39;t know type %T\n&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;t&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#a6e22e&#34;&gt;whatAmI&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;true&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#a6e22e&#34;&gt;whatAmI&lt;/span&gt;(&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#a6e22e&#34;&gt;whatAmI&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;hey&amp;#34;&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;输出结果&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>golang快速入门(2) 数据类型</title>
+      <link>/posts/golang/002-golearning/</link>
+      <pubDate>Wed, 03 Jun 2020 07:55:47 +0800</pubDate>
+      <guid>/posts/golang/002-golearning/</guid>
+      <description>&lt;p&gt;本节主要介绍golang的数据类型的分类，让给大家对数据类型有个简要的概念，俗话说的好。基础不牢，地动山摇。&lt;/p&gt;
+&lt;h3 id=&#34;一数据类型&#34;&gt;一、数据类型&lt;/h3&gt;
+&lt;p&gt;go语言数据类型分以下表格中四类，简单分，不同书籍上也有不同的说明：&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;类型&lt;/th&gt;
+          &lt;th&gt;描述&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;布尔型&lt;/td&gt;
+          &lt;td&gt;布尔型的值只可以是常量 true 或者 false。一个简单的例子：var b bool = true。&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;数值类型&lt;/td&gt;
+          &lt;td&gt;整型 int 和浮点型 float32、float64，Go 语言支持整型和浮点型数字，并且支持复数，其中位的运算采用补码。&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;字符串&lt;/td&gt;
+          &lt;td&gt;字符串就是一串固定长度的字符连接起来的字符序列。Go 的字符串是由单个字节连接起来的。Go 语言的字符串的字节使用 UTF-8 编码标识 Unicode 文本。&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;派生类型&lt;/td&gt;
+          &lt;td&gt;切片类型、接口类型、Map类型、数组类型、指针类型（Pointer）、结构化类型(struct)、Channel 类型、函数类型&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h4 id=&#34;11布尔类型&#34;&gt;1.1、布尔类型&lt;/h4&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;类型&lt;/th&gt;
+          &lt;th&gt;描述&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;bool&lt;/td&gt;
+          &lt;td&gt;布尔型的值只可以是常量 true 或者 false。一个简单的例子：var b bool = true&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h4 id=&#34;12数值类型&#34;&gt;1.2、数值类型&lt;/h4&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;类型&lt;/th&gt;
+          &lt;th&gt;描述&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;byte&lt;/td&gt;
+          &lt;td&gt;字节类型，类似uint8&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;rune&lt;/td&gt;
+          &lt;td&gt;类似 int32,go语言定义特有的数据类型，用于存储unicode码&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;int/uint&lt;/td&gt;
+          &lt;td&gt;有符号整数类型/无符号整数类型 （宽度与平台相关）&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Int8/uint8&lt;/td&gt;
+          &lt;td&gt;无符号 8 位整型 (0 到 255)/ 有符号 8 位整型 (-128 到 127)&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;int16/uint16&lt;/td&gt;
+          &lt;td&gt;无符号 16 位整型 (0 到 65535)/有符号 16 位整型 (-32768 到 32767)&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;int32/uint32&lt;/td&gt;
+          &lt;td&gt;无符号 32 位整型 (0 到 4294967295)/有符号 32 位整型 (-2147483648 到 2147483647)&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Int64/uint64&lt;/td&gt;
+          &lt;td&gt;无符号 64 位整型 (0 到 18446744073709551615)/有符号 64 位整型 (-9223372036854775808 到 9223372036854775807)&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;float32&lt;/td&gt;
+          &lt;td&gt;IEEE-754 32位浮点型数&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;float64&lt;/td&gt;
+          &lt;td&gt;IEEE-754 64位浮点型数&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Complex64/complex128&lt;/td&gt;
+          &lt;td&gt;32 位实数和虚数/64 位实数和虚数&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h4 id=&#34;13字符串类型&#34;&gt;1.3、字符串类型&lt;/h4&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;类型&lt;/th&gt;
+          &lt;th&gt;描述&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;string&lt;/td&gt;
+          &lt;td&gt;字符串就是一串固定长度的字符连接起来的字符序列,实际上就是一个字符串序列&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3 id=&#34;二细说类型&#34;&gt;二、细说类型&lt;/h3&gt;
+&lt;h4 id=&#34;21-值类型说明&#34;&gt;2.1、 值类型说明&lt;/h4&gt;
+&lt;p&gt;go的变量类型包括字符串、整形、浮点、布尔，下面我们看一个简单的例子&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>golang快速入门(1) 前言</title>
+      <link>/posts/golang/001-golearning01/</link>
+      <pubDate>Tue, 02 Jun 2020 22:54:32 +0800</pubDate>
+      <guid>/posts/golang/001-golearning01/</guid>
+      <description>&lt;h2 id=&#34;1教程简介&#34;&gt;1、教程简介&lt;/h2&gt;
+&lt;p&gt;本教程目的：与看到本教程的人一起，学习golang这门语言，分享学习成果，和热爱编程的同志们一起成长。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Go是一种开放源代码编程语言，旨在构建简单，快速且可靠的软件。详细说明文章请参见&lt;a href=&#34;https://golang.org/&#34;&gt;golang官网&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;2hello-world&#34;&gt;2、Hello World&lt;/h2&gt;
+&lt;p&gt;废话不多说，我们直接上代码，Everything is Hello World&lt;/p&gt;
+&lt;p&gt;2.1 输入以下内容到hello-world.go&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;package main
+
+import &amp;#34;fmt&amp;#34;
+
+func main() {
+    fmt.Println(&amp;#34;Hello World!&amp;#34;)
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;这就是一个完整的go的程序了&lt;/p&gt;
+&lt;p&gt;2.2 在安装了golang环境的的命令行，执行以下命令&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;# 直接运行程序
+$ go run hello-world.go 
+Hello World
+
+# 编译程序
+$ go build hello-world.go 
+
+# 执行程序
+$ ./hello-world 
+Hello World
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;3恭喜你&#34;&gt;3、恭喜你&lt;/h2&gt;
+&lt;p&gt;如果你的输出结果和我一样，恭喜你，你已经学会了，和我达到一样的水平了。&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
