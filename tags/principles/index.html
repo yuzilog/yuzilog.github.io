@@ -113,8 +113,13 @@
         </div>
         <ul id="menu">
             <li>
-                <a href="/archives" title="Archive">
-                    <span>Archive</span>
+                <a href="/tech/" title="Tech">
+                    <span>Tech</span>
+                </a>
+            </li>
+            <li>
+                <a href="/life/" title="Life">
+                    <span>Life</span>
                 </a>
             </li>
             <li>
@@ -123,8 +128,13 @@
                 </a>
             </li>
             <li>
-                <a href="/tags/" title="tags">
-                    <span>tags</span>
+                <a href="/archives/" title="Archive">
+                    <span>Archive</span>
+                </a>
+            </li>
+            <li>
+                <a href="/tags/" title="Tags">
+                    <span>Tags</span>
                 </a>
             </li>
         </ul>
@@ -156,7 +166,7 @@
 它维持了类的封装性。因为成分对象的内部细节是新对象看不见的，所以这种复用又称为“黑箱”复用。 新旧类之间的耦合度低。这种复用所需的依赖较少，新对象存取成分对象的唯一方法是通过成分对象的接口。 复用的灵活性高。这种复用可以在运行时动态进行，新对象可以动态地引用与成分对象类型相同的对象。 </p>
   </div>
   <footer class="entry-footer"><span title='2020-09-01 23:54:52 +0800 +0800'>2020年9月1日</span>&nbsp;·&nbsp;<span>Zen Yu</span></footer>
-  <a class="entry-link" aria-label="post link to 012-设计原则总结" href="/posts/principles/012-principle-summrize/"></a>
+  <a class="entry-link" aria-label="post link to 012-设计原则总结" href="/tech/principles/012-principle-summrize/"></a>
 </article>
 
 <article class="post-entry tag-entry"> 
@@ -174,7 +184,7 @@
 接口尽量小，但是要有限度。一个接口只服务于一个子模块或业务逻辑。 为依赖接口的类定制服务。只提供调用者需要的方法，屏蔽不需要的方法。 了解环境，拒绝盲从。每个项目或产品都有选定的环境因素，环境不同，接口拆分的标准就不同深入了解业务逻辑。 提高内聚，减少对外交互。使接口用最少的方法去完成最多的事情。 </p>
   </div>
   <footer class="entry-footer"><span title='2020-08-28 22:09:40 +0800 +0800'>2020年8月28日</span>&nbsp;·&nbsp;<span>Zen Yu</span></footer>
-  <a class="entry-link" aria-label="post link to 011-Interface-Segregation-Principle" href="/posts/principles/011-isp/"></a>
+  <a class="entry-link" aria-label="post link to 011-Interface-Segregation-Principle" href="/tech/principles/011-isp/"></a>
 </article>
 
 <article class="post-entry tag-entry"> 
@@ -196,7 +206,7 @@ package principles import &#34;testing&#34; type Bird struct { flySpeed int } fu
 ...</p>
   </div>
   <footer class="entry-footer"><span title='2020-08-26 23:07:52 +0800 +0800'>2020年8月26日</span>&nbsp;·&nbsp;<span>Zen Yu</span></footer>
-  <a class="entry-link" aria-label="post link to 010-Liskov-Substitution-Principle" href="/posts/principles/010-lsp/"></a>
+  <a class="entry-link" aria-label="post link to 010-Liskov-Substitution-Principle" href="/tech/principles/010-lsp/"></a>
 </article>
 
 <article class="post-entry tag-entry"> 
@@ -219,7 +229,7 @@ package principles import ( &#34;fmt&#34; &#34;testing&#34; ) // 明星 type Sta
 ...</p>
   </div>
   <footer class="entry-footer"><span title='2020-08-18 06:36:00 +0800 +0800'>2020年8月18日</span>&nbsp;·&nbsp;<span>Zen Yu</span></footer>
-  <a class="entry-link" aria-label="post link to 009-Law-of-Demete" href="/posts/principles/009-lod/"></a>
+  <a class="entry-link" aria-label="post link to 009-Law-of-Demete" href="/tech/principles/009-lod/"></a>
 </article>
 
 <article class="post-entry tag-entry"> 
@@ -237,7 +247,7 @@ High level modules should not depend on low level modules. Both should depend on
 ...</p>
   </div>
   <footer class="entry-footer"><span title='2020-08-13 22:29:14 +0800 +0800'>2020年8月13日</span>&nbsp;·&nbsp;<span>Zen Yu</span></footer>
-  <a class="entry-link" aria-label="post link to 008 Dependency Inversion Principle" href="/posts/principles/008-dependency_inversion_principle/"></a>
+  <a class="entry-link" aria-label="post link to 008 Dependency Inversion Principle" href="/tech/principles/008-dependency_inversion_principle/"></a>
 </article>
 
 <article class="post-entry tag-entry"> 
@@ -254,7 +264,7 @@ var btn principles.Button lamp := principles.Lamp{State: &#34;关灯&#34;} // �
 ...</p>
   </div>
   <footer class="entry-footer"><span title='2020-07-31 22:51:03 +0800 +0800'>2020年7月31日</span>&nbsp;·&nbsp;<span>Zen Yu</span></footer>
-  <a class="entry-link" aria-label="post link to 007 Single Responsibility Principle" href="/posts/principles/007-single-responsibility-principle/"></a>
+  <a class="entry-link" aria-label="post link to 007 Single Responsibility Principle" href="/tech/principles/007-single-responsibility-principle/"></a>
 </article>
 
 <article class="post-entry tag-entry"> 
@@ -274,7 +284,7 @@ func TestAudi_GetName(t *testing.T) { var ( list []ICar ) list = []ICar{} list =
 ...</p>
   </div>
   <footer class="entry-footer"><span title='2020-07-28 22:17:45 +0800 +0800'>2020年7月28日</span>&nbsp;·&nbsp;<span>Zen Yu</span></footer>
-  <a class="entry-link" aria-label="post link to 006 Open Close Principle" href="/posts/principles/006-open-close-principle/"></a>
+  <a class="entry-link" aria-label="post link to 006 Open Close Principle" href="/tech/principles/006-open-close-principle/"></a>
 </article>
 
 <article class="post-entry tag-entry"> 
@@ -302,7 +312,7 @@ Single Responsibility Principle - 单一职责 Open / Closed Principle - 开闭�
 ...</p>
   </div>
   <footer class="entry-footer"><span title='2020-07-22 22:18:33 +0800 +0800'>2020年7月22日</span>&nbsp;·&nbsp;<span>Zen Yu</span></footer>
-  <a class="entry-link" aria-label="post link to 005 Design_principles" href="/posts/principles/005-design_principles/"></a>
+  <a class="entry-link" aria-label="post link to 005 Design_principles" href="/tech/principles/005-design_principles/"></a>
 </article>
     </main>
     

@@ -10,9 +10,9 @@
     <atom:link href="/tags/principles/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>012-设计原则总结</title>
-      <link>/posts/principles/012-principle-summrize/</link>
+      <link>/tech/principles/012-principle-summrize/</link>
       <pubDate>Tue, 01 Sep 2020 23:54:52 +0800</pubDate>
-      <guid>/posts/principles/012-principle-summrize/</guid>
+      <guid>/tech/principles/012-principle-summrize/</guid>
       <description>&lt;h3 id=&#34;软件设计原则总结&#34;&gt;软件设计原则总结&lt;/h3&gt;
 &lt;h4 id=&#34;一原则定义&#34;&gt;一、原则定义&lt;/h4&gt;
 &lt;p&gt;在软件开发中，为了提高软件系统的可维护性和可复用性，增加软件的可扩展性和灵活性。我们需要尽量根据以下7条原则开发程序。提高程序开发效率，降低软件的维护成本。以下对前面学习的设计原则做个简单的汇总。&lt;/p&gt;
@@ -60,9 +60,9 @@
     </item>
     <item>
       <title>011-Interface-Segregation-Principle</title>
-      <link>/posts/principles/011-isp/</link>
+      <link>/tech/principles/011-isp/</link>
       <pubDate>Fri, 28 Aug 2020 22:09:40 +0800</pubDate>
-      <guid>/posts/principles/011-isp/</guid>
+      <guid>/tech/principles/011-isp/</guid>
       <description>&lt;h3 id=&#34;接口隔离原则&#34;&gt;接口隔离原则&lt;/h3&gt;
 &lt;p&gt;接口隔离原则（Interface Segregation Principle，ISP）要求程序员尽量将臃肿庞大的接口拆分成更小的和更具体的接口，让接口中只包含客户感兴趣的方法。&lt;/p&gt;
 &lt;p&gt;2002 年罗伯特·C.马丁给“接口隔离原则”的定义是：客户端不应该被迫依赖于它不使用的方法（Clients should not be forced to depend on methods they do not use）。该原则还有另外一个定义：一个类对另一个类的依赖应该建立在最小的接口上（The dependency of one class to another one should depend on the smallest possible interface）。&lt;/p&gt;
@@ -92,9 +92,9 @@
     </item>
     <item>
       <title>010-Liskov-Substitution-Principle</title>
-      <link>/posts/principles/010-lsp/</link>
+      <link>/tech/principles/010-lsp/</link>
       <pubDate>Wed, 26 Aug 2020 23:07:52 +0800</pubDate>
-      <guid>/posts/principles/010-lsp/</guid>
+      <guid>/tech/principles/010-lsp/</guid>
       <description>&lt;h3 id=&#34;里氏替换原则liskov-substitution-principlelsp&#34;&gt;里氏替换原则（Liskov Substitution Principle，LSP）&lt;/h3&gt;
 &lt;p&gt;里氏替换原则（Liskov Substitution Principle，LSP）由麻省理工学院计算机科学实验室的里斯科夫（Liskov）女士在 1987 年的“面向对象技术的高峰会议”（OOPSLA）上发表的一篇文章《数据抽象和层次》（Data Abstraction and Hierarchy）里提出来的，她提出：继承必须确保超类所拥有的性质在子类中仍然成立（Inheritance should ensure that any property proved about supertype objects also holds for subtype objects）。&lt;/p&gt;
 &lt;p&gt;里氏替换原则主要阐述了有关继承的一些原则，也就是什么时候应该使用继承，什么时候不应该使用继承，以及其中蕴含的原理。里氏替换原是继承复用的基础，它反映了基类与子类之间的关系，是对开闭原则的补充，是对实现抽象化的具体步骤的规范。&lt;/p&gt;
@@ -156,9 +156,9 @@
     </item>
     <item>
       <title>009-Law-of-Demete</title>
-      <link>/posts/principles/009-lod/</link>
+      <link>/tech/principles/009-lod/</link>
       <pubDate>Tue, 18 Aug 2020 06:36:00 +0800</pubDate>
-      <guid>/posts/principles/009-lod/</guid>
+      <guid>/tech/principles/009-lod/</guid>
       <description>&lt;h3 id=&#34;lod-迪米特法则&#34;&gt;LOD 迪米特法则&lt;/h3&gt;
 &lt;blockquote&gt;
 &lt;p&gt;迪米特法则(Law of Demeter, LOD)，有时候也叫做最少知识原则(Least Knowledge Principle, LKP)，它的定义是: 一个软件实体应当尽可能少地与其它实体发生相互作用。产生于 1987 年美国东北大学（Northeastern University）的一个名为迪米特（Demeter）的研究项目，由伊恩·荷兰（Ian Holland）提出，被 UML 创始者之一的布奇（Booch）普及，后来又因为在经典著作《程序员修炼之道》（The Pragmatic Programmer）提及而广为人知。&lt;/p&gt;
@@ -259,9 +259,9 @@
     </item>
     <item>
       <title>008 Dependency Inversion Principle</title>
-      <link>/posts/principles/008-dependency_inversion_principle/</link>
+      <link>/tech/principles/008-dependency_inversion_principle/</link>
       <pubDate>Thu, 13 Aug 2020 22:29:14 +0800</pubDate>
-      <guid>/posts/principles/008-dependency_inversion_principle/</guid>
+      <guid>/tech/principles/008-dependency_inversion_principle/</guid>
       <description>&lt;h3 id=&#34;依赖倒置原则&#34;&gt;依赖倒置原则&lt;/h3&gt;
 &lt;p&gt;依赖倒置原则(DIP)由Robert C. Martin在1996年在 &lt;a href=&#34;http://butunclebob.com/ArticleS.UncleBob.PrinciplesOfOod&#34;&gt;Dependency Inversion Principle&lt;/a&gt;中提出，他对此定义如下:&lt;/p&gt;
 &lt;blockquote&gt;
@@ -310,9 +310,9 @@
     </item>
     <item>
       <title>007 Single Responsibility Principle</title>
-      <link>/posts/principles/007-single-responsibility-principle/</link>
+      <link>/tech/principles/007-single-responsibility-principle/</link>
       <pubDate>Fri, 31 Jul 2020 22:51:03 +0800</pubDate>
-      <guid>/posts/principles/007-single-responsibility-principle/</guid>
+      <guid>/tech/principles/007-single-responsibility-principle/</guid>
       <description>&lt;h2&gt;&lt;/h2&gt;
 &lt;blockquote&gt;
 &lt;p&gt;软件设计的两个基本准则：低耦合和高内聚&lt;/p&gt;
@@ -382,9 +382,9 @@
     </item>
     <item>
       <title>006 Open Close Principle</title>
-      <link>/posts/principles/006-open-close-principle/</link>
+      <link>/tech/principles/006-open-close-principle/</link>
       <pubDate>Tue, 28 Jul 2020 22:17:45 +0800</pubDate>
-      <guid>/posts/principles/006-open-close-principle/</guid>
+      <guid>/tech/principles/006-open-close-principle/</guid>
       <description>&lt;h2 id=&#34;开闭原则实践&#34;&gt;开闭原则实践&lt;/h2&gt;
 &lt;p&gt;开闭原则（Open Close Principle），开闭原则就是说对扩展开放，对修改关闭。在程序需要进行拓展的时候，不能去修改原有的代码，实现一个热插拔的效果。 所以一句话概括就是：为了使程序的扩展性好，易于维护和升级。原文是这样的：Software entities should be open for extension，but closed for modification&lt;/p&gt;
 &lt;p&gt;我们举例说明什么是开闭原则，以4s店销售汽车为例，其类图如图所示:&lt;/p&gt;
@@ -429,9 +429,9 @@
     </item>
     <item>
       <title>005 Design_principles</title>
-      <link>/posts/principles/005-design_principles/</link>
+      <link>/tech/principles/005-design_principles/</link>
       <pubDate>Wed, 22 Jul 2020 22:18:33 +0800</pubDate>
-      <guid>/posts/principles/005-design_principles/</guid>
+      <guid>/tech/principles/005-design_principles/</guid>
       <description>&lt;h2 id=&#34;面向对象的设计原则&#34;&gt;面向对象的设计原则&lt;/h2&gt;
 &lt;p&gt;设计原则是2002年 罗伯特·塞西尔·马丁 (Robert Cecil Martin)俗称“鲍伯叔叔” &lt;a href=&#34;https://item.jd.com/12468135.html&#34;&gt;敏捷软件开发：原则、模式与实践/软件工程实践丛书&lt;/a&gt;书中提到可重用的五大设计原则 - “SOLID”（英文首字母缩略字）:&lt;/p&gt;
 &lt;ul&gt;

@@ -6,8 +6,29 @@
     <description>Recent content on Zen</description>
     <generator>Hugo -- 0.152.2</generator>
     <language>zh</language>
-    <lastBuildDate>Tue, 05 Aug 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 24 Nov 2025 22:05:15 +0800</lastBuildDate>
     <atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>关于减肥</title>
+      <link>/life/about-fitness/</link>
+      <pubDate>Mon, 24 Nov 2025 22:05:15 +0800</pubDate>
+      <guid>/life/about-fitness/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;减肥实际上就是健康管理，是生活方式的一种改变。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;为什么要减肥&#34;&gt;为什么要减肥&lt;/h2&gt;
+&lt;p&gt;我的身高不高，体重却有80kg，BMI将近30了。是一个非常不健康的指数。&lt;/p&gt;
+&lt;p&gt;当我觉得开始减肥的头一个月，我瘦了5kg，但是变化不大，我甚至觉得我瘦了这么多，但是看起来还是那么胖。&lt;/p&gt;
+&lt;p&gt;从今年7月份开始，我开始了减肥之路，到现在为止已经将近半年了。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;7月份，跑步54.95km&lt;/li&gt;
+&lt;li&gt;8月份，跑步100.99km&lt;/li&gt;
+&lt;li&gt;9月份，跑步65.79km&lt;/li&gt;
+&lt;li&gt;10月份，跑步42km&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;唯一的变化就是，家人觉得我的皮肤好像好了那么一点&lt;/p&gt;
+&lt;p&gt;未完待续&amp;hellip;&lt;/p&gt;</description>
+    </item>
     <item>
       <title>YiTab Privacy Policy</title>
       <link>/product/yitab/</link>
@@ -50,9 +71,9 @@
     </item>
     <item>
       <title>bloom-filter</title>
-      <link>/posts/experience/bloom-filter/</link>
+      <link>/tech/experience/bloom-filter/</link>
       <pubDate>Wed, 21 Aug 2024 15:50:05 +0800</pubDate>
-      <guid>/posts/experience/bloom-filter/</guid>
+      <guid>/tech/experience/bloom-filter/</guid>
       <description>&lt;p&gt;布隆过滤器（Bloom Filter）是 1970 年由布隆提出的，是一种高效的概率型数据结构。它实际上是一个很长的二进制向量和一系列随机映射函数。用于测试一个元素是否属于一个集合。它特别适用于需要快速检查一个元素是否在一个大集合中的场景。布隆过滤器通过牺牲一定的准确性（存在误判的可能性）来换取空间效率和查询速度。&lt;/p&gt;
 &lt;h2 id=&#34;布隆过滤器简介&#34;&gt;布隆过滤器简介&lt;/h2&gt;
 &lt;h3 id=&#34;优点&#34;&gt;优点&lt;/h3&gt;
@@ -106,9 +127,9 @@
     </item>
     <item>
       <title>macOS 10.15 下 CGO 不能运行的解决方案</title>
-      <link>/posts/experience/macos-cgo/</link>
+      <link>/tech/experience/macos-cgo/</link>
       <pubDate>Tue, 15 Sep 2020 20:52:33 +0800</pubDate>
-      <guid>/posts/experience/macos-cgo/</guid>
+      <guid>/tech/experience/macos-cgo/</guid>
       <description>&lt;h3 id=&#34;--golang-fatal-error-corefoundationcorefoundationh-file-not-found&#34;&gt;###  golang fatal error: &amp;lsquo;CoreFoundation/CoreFoundation.h&amp;rsquo; file not found&amp;quot;&lt;/h3&gt;
 &lt;p&gt;Macos升级到10.15版本后，Catalina macOS 10.15 下 CGO 不能运行的解决方案&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;/usr/local/go/src/crypto/x509/root_cgo_darwin.go:16:10: fatal error: &amp;#39;CoreFoundation/CoreFoundation.h&amp;#39; file not found
@@ -129,9 +150,9 @@ ln -s /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Framewo
     </item>
     <item>
       <title>012-设计原则总结</title>
-      <link>/posts/principles/012-principle-summrize/</link>
+      <link>/tech/principles/012-principle-summrize/</link>
       <pubDate>Tue, 01 Sep 2020 23:54:52 +0800</pubDate>
-      <guid>/posts/principles/012-principle-summrize/</guid>
+      <guid>/tech/principles/012-principle-summrize/</guid>
       <description>&lt;h3 id=&#34;软件设计原则总结&#34;&gt;软件设计原则总结&lt;/h3&gt;
 &lt;h4 id=&#34;一原则定义&#34;&gt;一、原则定义&lt;/h4&gt;
 &lt;p&gt;在软件开发中，为了提高软件系统的可维护性和可复用性，增加软件的可扩展性和灵活性。我们需要尽量根据以下7条原则开发程序。提高程序开发效率，降低软件的维护成本。以下对前面学习的设计原则做个简单的汇总。&lt;/p&gt;
@@ -179,9 +200,9 @@ ln -s /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Framewo
     </item>
     <item>
       <title>011-Interface-Segregation-Principle</title>
-      <link>/posts/principles/011-isp/</link>
+      <link>/tech/principles/011-isp/</link>
       <pubDate>Fri, 28 Aug 2020 22:09:40 +0800</pubDate>
-      <guid>/posts/principles/011-isp/</guid>
+      <guid>/tech/principles/011-isp/</guid>
       <description>&lt;h3 id=&#34;接口隔离原则&#34;&gt;接口隔离原则&lt;/h3&gt;
 &lt;p&gt;接口隔离原则（Interface Segregation Principle，ISP）要求程序员尽量将臃肿庞大的接口拆分成更小的和更具体的接口，让接口中只包含客户感兴趣的方法。&lt;/p&gt;
 &lt;p&gt;2002 年罗伯特·C.马丁给“接口隔离原则”的定义是：客户端不应该被迫依赖于它不使用的方法（Clients should not be forced to depend on methods they do not use）。该原则还有另外一个定义：一个类对另一个类的依赖应该建立在最小的接口上（The dependency of one class to another one should depend on the smallest possible interface）。&lt;/p&gt;
@@ -211,9 +232,9 @@ ln -s /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Framewo
     </item>
     <item>
       <title>010-Liskov-Substitution-Principle</title>
-      <link>/posts/principles/010-lsp/</link>
+      <link>/tech/principles/010-lsp/</link>
       <pubDate>Wed, 26 Aug 2020 23:07:52 +0800</pubDate>
-      <guid>/posts/principles/010-lsp/</guid>
+      <guid>/tech/principles/010-lsp/</guid>
       <description>&lt;h3 id=&#34;里氏替换原则liskov-substitution-principlelsp&#34;&gt;里氏替换原则（Liskov Substitution Principle，LSP）&lt;/h3&gt;
 &lt;p&gt;里氏替换原则（Liskov Substitution Principle，LSP）由麻省理工学院计算机科学实验室的里斯科夫（Liskov）女士在 1987 年的“面向对象技术的高峰会议”（OOPSLA）上发表的一篇文章《数据抽象和层次》（Data Abstraction and Hierarchy）里提出来的，她提出：继承必须确保超类所拥有的性质在子类中仍然成立（Inheritance should ensure that any property proved about supertype objects also holds for subtype objects）。&lt;/p&gt;
 &lt;p&gt;里氏替换原则主要阐述了有关继承的一些原则，也就是什么时候应该使用继承，什么时候不应该使用继承，以及其中蕴含的原理。里氏替换原是继承复用的基础，它反映了基类与子类之间的关系，是对开闭原则的补充，是对实现抽象化的具体步骤的规范。&lt;/p&gt;
@@ -275,9 +296,9 @@ ln -s /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Framewo
     </item>
     <item>
       <title>009-Law-of-Demete</title>
-      <link>/posts/principles/009-lod/</link>
+      <link>/tech/principles/009-lod/</link>
       <pubDate>Tue, 18 Aug 2020 06:36:00 +0800</pubDate>
-      <guid>/posts/principles/009-lod/</guid>
+      <guid>/tech/principles/009-lod/</guid>
       <description>&lt;h3 id=&#34;lod-迪米特法则&#34;&gt;LOD 迪米特法则&lt;/h3&gt;
 &lt;blockquote&gt;
 &lt;p&gt;迪米特法则(Law of Demeter, LOD)，有时候也叫做最少知识原则(Least Knowledge Principle, LKP)，它的定义是: 一个软件实体应当尽可能少地与其它实体发生相互作用。产生于 1987 年美国东北大学（Northeastern University）的一个名为迪米特（Demeter）的研究项目，由伊恩·荷兰（Ian Holland）提出，被 UML 创始者之一的布奇（Booch）普及，后来又因为在经典著作《程序员修炼之道》（The Pragmatic Programmer）提及而广为人知。&lt;/p&gt;
@@ -378,9 +399,9 @@ ln -s /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Framewo
     </item>
     <item>
       <title>008 Dependency Inversion Principle</title>
-      <link>/posts/principles/008-dependency_inversion_principle/</link>
+      <link>/tech/principles/008-dependency_inversion_principle/</link>
       <pubDate>Thu, 13 Aug 2020 22:29:14 +0800</pubDate>
-      <guid>/posts/principles/008-dependency_inversion_principle/</guid>
+      <guid>/tech/principles/008-dependency_inversion_principle/</guid>
       <description>&lt;h3 id=&#34;依赖倒置原则&#34;&gt;依赖倒置原则&lt;/h3&gt;
 &lt;p&gt;依赖倒置原则(DIP)由Robert C. Martin在1996年在 &lt;a href=&#34;http://butunclebob.com/ArticleS.UncleBob.PrinciplesOfOod&#34;&gt;Dependency Inversion Principle&lt;/a&gt;中提出，他对此定义如下:&lt;/p&gt;
 &lt;blockquote&gt;
@@ -429,9 +450,9 @@ ln -s /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Framewo
     </item>
     <item>
       <title>007 Single Responsibility Principle</title>
-      <link>/posts/principles/007-single-responsibility-principle/</link>
+      <link>/tech/principles/007-single-responsibility-principle/</link>
       <pubDate>Fri, 31 Jul 2020 22:51:03 +0800</pubDate>
-      <guid>/posts/principles/007-single-responsibility-principle/</guid>
+      <guid>/tech/principles/007-single-responsibility-principle/</guid>
       <description>&lt;h2&gt;&lt;/h2&gt;
 &lt;blockquote&gt;
 &lt;p&gt;软件设计的两个基本准则：低耦合和高内聚&lt;/p&gt;
@@ -501,9 +522,9 @@ ln -s /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Framewo
     </item>
     <item>
       <title>006 Open Close Principle</title>
-      <link>/posts/principles/006-open-close-principle/</link>
+      <link>/tech/principles/006-open-close-principle/</link>
       <pubDate>Tue, 28 Jul 2020 22:17:45 +0800</pubDate>
-      <guid>/posts/principles/006-open-close-principle/</guid>
+      <guid>/tech/principles/006-open-close-principle/</guid>
       <description>&lt;h2 id=&#34;开闭原则实践&#34;&gt;开闭原则实践&lt;/h2&gt;
 &lt;p&gt;开闭原则（Open Close Principle），开闭原则就是说对扩展开放，对修改关闭。在程序需要进行拓展的时候，不能去修改原有的代码，实现一个热插拔的效果。 所以一句话概括就是：为了使程序的扩展性好，易于维护和升级。原文是这样的：Software entities should be open for extension，but closed for modification&lt;/p&gt;
 &lt;p&gt;我们举例说明什么是开闭原则，以4s店销售汽车为例，其类图如图所示:&lt;/p&gt;
@@ -548,9 +569,9 @@ ln -s /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Framewo
     </item>
     <item>
       <title>005 Design_principles</title>
-      <link>/posts/principles/005-design_principles/</link>
+      <link>/tech/principles/005-design_principles/</link>
       <pubDate>Wed, 22 Jul 2020 22:18:33 +0800</pubDate>
-      <guid>/posts/principles/005-design_principles/</guid>
+      <guid>/tech/principles/005-design_principles/</guid>
       <description>&lt;h2 id=&#34;面向对象的设计原则&#34;&gt;面向对象的设计原则&lt;/h2&gt;
 &lt;p&gt;设计原则是2002年 罗伯特·塞西尔·马丁 (Robert Cecil Martin)俗称“鲍伯叔叔” &lt;a href=&#34;https://item.jd.com/12468135.html&#34;&gt;敏捷软件开发：原则、模式与实践/软件工程实践丛书&lt;/a&gt;书中提到可重用的五大设计原则 - “SOLID”（英文首字母缩略字）:&lt;/p&gt;
 &lt;ul&gt;
@@ -614,9 +635,9 @@ ln -s /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Framewo
     </item>
     <item>
       <title>golang快速入门(4) Array &amp; Slice</title>
-      <link>/posts/golang/004-golearning/</link>
+      <link>/tech/golang/004-golearning/</link>
       <pubDate>Tue, 09 Jun 2020 23:14:36 +0800</pubDate>
-      <guid>/posts/golang/004-golearning/</guid>
+      <guid>/tech/golang/004-golearning/</guid>
       <description>&lt;p&gt;本节主要介绍数组(array)与切片(slice)，也比较让人困惑。go语言数组与切片都属于集合类的类型。但数组类型的声明长度必须给定，而且之后不会再改变。切片的长度可以自动地随着其中元素数量的增长而增长，但不会随着元素数量的减少而减小。简而言之：&lt;strong&gt;数组是固定长度，切片是可变长度。&lt;/strong&gt; go语言中切片可以看成数组的一个特例，这里表达不一定准备，大家自行体会吧。&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Array的使用&lt;/li&gt;
@@ -669,9 +690,9 @@ ln -s /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Framewo
     </item>
     <item>
       <title>golang快速入门(3) 流程控制</title>
-      <link>/posts/golang/003-golearning/</link>
+      <link>/tech/golang/003-golearning/</link>
       <pubDate>Fri, 05 Jun 2020 23:04:06 +0800</pubDate>
-      <guid>/posts/golang/003-golearning/</guid>
+      <guid>/tech/golang/003-golearning/</guid>
       <description>&lt;p&gt;go语言作为类C语言的一种，流程控制与其他编程语言没有什么不同，主要有以下几种控制结构&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;选择结构&lt;code&gt;if/Else&lt;/code&gt;&lt;/li&gt;
@@ -772,9 +793,9 @@ ln -s /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Framewo
     </item>
     <item>
       <title>golang快速入门(2) 数据类型</title>
-      <link>/posts/golang/002-golearning/</link>
+      <link>/tech/golang/002-golearning/</link>
       <pubDate>Wed, 03 Jun 2020 07:55:47 +0800</pubDate>
-      <guid>/posts/golang/002-golearning/</guid>
+      <guid>/tech/golang/002-golearning/</guid>
       <description>&lt;p&gt;本节主要介绍golang的数据类型的分类，让给大家对数据类型有个简要的概念，俗话说的好。基础不牢，地动山摇。&lt;/p&gt;
 &lt;h3 id=&#34;一数据类型&#34;&gt;一、数据类型&lt;/h3&gt;
 &lt;p&gt;go语言数据类型分以下表格中四类，简单分，不同书籍上也有不同的说明：&lt;/p&gt;
@@ -891,9 +912,9 @@ ln -s /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Framewo
     </item>
     <item>
       <title>golang快速入门(1) 前言</title>
-      <link>/posts/golang/001-golearning01/</link>
+      <link>/tech/golang/001-golearning01/</link>
       <pubDate>Tue, 02 Jun 2020 22:54:32 +0800</pubDate>
-      <guid>/posts/golang/001-golearning01/</guid>
+      <guid>/tech/golang/001-golearning01/</guid>
       <description>&lt;h2 id=&#34;1教程简介&#34;&gt;1、教程简介&lt;/h2&gt;
 &lt;p&gt;本教程目的：与看到本教程的人一起，学习golang这门语言，分享学习成果，和热爱编程的同志们一起成长。&lt;/p&gt;
 &lt;blockquote&gt;
