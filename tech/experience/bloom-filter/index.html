@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
-<title>bloom-filter | Zen</title>
+<title>bloom-filter | Zen Think</title>
 <meta name="keywords" content="">
 <meta name="description" content="布隆过滤器（Bloom Filter）是 1970 年由布隆提出的，是一种高效的概率型数据结构。它实际上是一个很长的二进制向量和一系列随机映射函数。用于测试一个元素是否属于一个集合。它特别适用于需要快速检查一个元素是否在一个大集合中的场景。布隆过滤器通过牺牲一定的准确性（存在误判的可能性）来换取空间效率和查询速度。
 布隆过滤器简介
@@ -121,7 +121,7 @@ print(bf.check(&#34;python&#34;)) # 输出: False（可能为 False，但存在�
     }
 
 </script><meta property="og:url" content="/tech/experience/bloom-filter/">
-  <meta property="og:site_name" content="Zen">
+  <meta property="og:site_name" content="Zen Think">
   <meta property="og:title" content="bloom-filter">
   <meta property="og:description" content="布隆过滤器（Bloom Filter）是 1970 年由布隆提出的，是一种高效的概率型数据结构。它实际上是一个很长的二进制向量和一系列随机映射函数。用于测试一个元素是否属于一个集合。它特别适用于需要快速检查一个元素是否在一个大集合中的场景。布隆过滤器通过牺牲一定的准确性（存在误判的可能性）来换取空间效率和查询速度。
 布隆过滤器简介 优点 空间效率高：布隆过滤器相比传统的数据结构（如哈希表、集合），在相同的数据量下占用的内存要少得多。 查询速度快：布隆过滤器的查询时间复杂度为 O(k)，其中 k 是哈希函数的数量，通常是常数。 缺点 存在误判：布隆过滤器会存在误判的可能性，即可能会判断一个元素在集合中，但实际并不在。无法判断元素“肯定不存在”的情况。 无法删除元素：一旦元素被添加到布隆过滤器中，无法删除。如果要删除，需要使用改进的版本，如计数布隆过滤器（Counting Bloom Filter）。 应用场景 缓存系统：布隆过滤器常用于缓存系统中，快速判断一个请求是否已经被缓存，以减少不必要的磁盘访问。 网络爬虫：用于判断一个URL是否已经被访问过，避免重复抓取。 数据库：在数据库查询中，用于快速判断一个键值是否存在于数据库中，以减少不必要的查询。 实际实现方式 import mmh3 from bitarray import bitarray class BloomFilter: def __init__(self, size, hash_count): self.size = size self.hash_count = hash_count self.bit_array = bitarray(size) self.bit_array.setall(0) def add(self, item): for i in range(self.hash_count): index = mmh3.hash(item, i) % self.size self.bit_array[index] = 1 def check(self, item): for i in range(self.hash_count): index = mmh3.hash(item, i) % self.size if self.bit_array[index] == 0: return False return True # 使用示例 bf = BloomFilter(5000, 7) bf.add(&#34;hello&#34;) bf.add(&#34;world&#34;) print(bf.check(&#34;hello&#34;)) # 输出: True print(bf.check(&#34;world&#34;)) # 输出: True print(bf.check(&#34;python&#34;)) # 输出: False（可能为 False，但存在误判为 True 的可能性） 在这个示例中，布隆过滤器使用 mmh3 库来计算哈希值，并使用 bitarray 库来管理位数组。可以根据需要调整位数组的大小和哈希函数的数量，以达到不同的准确性和空间效率。">
@@ -229,7 +229,7 @@ print(bf.check(&#34;python&#34;)) # 输出: False（可能为 False，但存在�
   },
   "publisher": {
     "@type": "Organization",
-    "name": "Zen",
+    "name": "Zen Think",
     "logo": {
       "@type": "ImageObject",
       "url": "/favicon.svg"
@@ -242,7 +242,7 @@ print(bf.check(&#34;python&#34;)) # 输出: False（可能为 False，但存在�
     <header class="header">
     <nav class="nav">
         <div class="logo color-title-gradient">
-            <a href="/" accesskey="h" title="Zen (Alt + H)">Zen</a>
+            <a href="/" accesskey="h" title="Zen Think (Alt + H)">Zen Think</a>
             <div class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
@@ -369,7 +369,7 @@ print(bf.check(&#34;python&#34;)) # 输出: False（可能为 False，但存在�
     </main>
     
 <footer class="footer">
-        <span>&copy; 2025 <a href="/">Zen</a></span> · 
+        <span>&copy; 2025 <a href="/">Zen Think</a></span> · 
 
     <span>
         Powered by

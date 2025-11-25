@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
-<title>golang快速入门(4) Array &amp; Slice | Zen</title>
+<title>golang快速入门(4) Array &amp; Slice | Zen Think</title>
 <meta name="keywords" content="golang">
 <meta name="description" content="本节主要介绍数组(array)与切片(slice)，也比较让人困惑。go语言数组与切片都属于集合类的类型。但数组类型的声明长度必须给定，而且之后不会再改变。切片的长度可以自动地随着其中元素数量的增长而增长，但不会随着元素数量的减少而减小。简而言之：数组是固定长度，切片是可变长度。 go语言中切片可以看成数组的一个特例，这里表达不一定准备，大家自行体会吧。
 
@@ -120,7 +120,7 @@ for i, v := range b {
     }
 
 </script><meta property="og:url" content="/tech/golang/004-golearning/">
-  <meta property="og:site_name" content="Zen">
+  <meta property="og:site_name" content="Zen Think">
   <meta property="og:title" content="golang快速入门(4) Array & Slice">
   <meta property="og:description" content="本节主要介绍数组(array)与切片(slice)，也比较让人困惑。go语言数组与切片都属于集合类的类型。但数组类型的声明长度必须给定，而且之后不会再改变。切片的长度可以自动地随着其中元素数量的增长而增长，但不会随着元素数量的减少而减小。简而言之：数组是固定长度，切片是可变长度。 go语言中切片可以看成数组的一个特例，这里表达不一定准备，大家自行体会吧。
 Array的使用 Slice的使用 一、Array的使用 1.1 数组定义 // 定一个长度位5的数组 var arr [5]int // 初始化输出的数组会填充为0 [0 0 0 0 0] fmt.Println(&#34;arr:&#34;, arr) // 给下标为4的数组赋值 arr[4] = 100 // 输出：set: [0 0 0 0 100] fmt.Println(&#34;set:&#34;, arr) // get: 100 fmt.Println(&#34;get:&#34;, arr[4]) // len获取数组长度 len: 5 fmt.Println(&#34;len:&#34;, len(arr)) // 带有值的数组定义 b := [5]int{1, 2, 3, 4, 5} // dcl: [1 2 3 4 5] fmt.Println(&#34;dcl:&#34;, b) // 二维数组定义 var twoD [2][3]int for i := 0; i &lt; 2; i&#43;&#43; { for j := 0; j &lt; 3; j&#43;&#43; { twoD[i][j] = i &#43; j } } // 2d: [[0 1 2] [1 2 3]] fmt.Println(&#34;2d: &#34;, twoD) 1.2 数组遍历 b := [5]int{1, 2, 3, 4, 5} // 普通的方式遍历 for i := 0; i &lt; len(b); i&#43;&#43; { fmt.Println(&#34;index:&#34;, i, &#34;value:&#34;, b[i]) } // 常见遍历方法 for i, v := range b { fmt.Println(&#34;index:&#34;, i, &#34;value:&#34;, v) } 二、Slice的使用 在go语言中，你看到的切片的应用，一定是比数组多的，应用更为灵活和广泛。是go语言中关键的数据类型，提供了比数组更强大的接口。">
@@ -228,7 +228,7 @@ for i, v := range b {
   },
   "publisher": {
     "@type": "Organization",
-    "name": "Zen",
+    "name": "Zen Think",
     "logo": {
       "@type": "ImageObject",
       "url": "/favicon.svg"
@@ -241,7 +241,7 @@ for i, v := range b {
     <header class="header">
     <nav class="nav">
         <div class="logo color-title-gradient">
-            <a href="/" accesskey="h" title="Zen (Alt + H)">Zen</a>
+            <a href="/" accesskey="h" title="Zen Think (Alt + H)">Zen Think</a>
             <div class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
@@ -420,7 +420,7 @@ fmt.Println(&#34;numbers[4:] ==&#34;, numbers[4:]) // numbers[4:] == [4 5 6 7 8]
     </main>
     
 <footer class="footer">
-        <span>&copy; 2025 <a href="/">Zen</a></span> · 
+        <span>&copy; 2025 <a href="/">Zen Think</a></span> · 
 
     <span>
         Powered by
