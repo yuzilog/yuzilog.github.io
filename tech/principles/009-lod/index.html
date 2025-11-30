@@ -167,7 +167,16 @@ func TestLAD(t *testing.T) {
         document.querySelector("html").dataset.theme = 'light';
     }
 
-</script><meta property="og:url" content="/tech/principles/009-lod/">
+</script><script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?9541b33c40092b9ec36f91947864a400";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+    <meta property="og:url" content="/tech/principles/009-lod/">
   <meta property="og:site_name" content="Zen Think">
   <meta property="og:title" content="009-Law-of-Demete">
   <meta property="og:description" content="LOD 迪米特法则 迪米特法则(Law of Demeter, LOD)，有时候也叫做最少知识原则(Least Knowledge Principle, LKP)，它的定义是: 一个软件实体应当尽可能少地与其它实体发生相互作用。产生于 1987 年美国东北大学（Northeastern University）的一个名为迪米特（Demeter）的研究项目，由伊恩·荷兰（Ian Holland）提出，被 UML 创始者之一的布奇（Booch）普及，后来又因为在经典著作《程序员修炼之道》（The Pragmatic Programmer）提及而广为人知。

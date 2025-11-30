@@ -128,7 +128,16 @@ func TestSwallow(t *testing.T) {
         document.querySelector("html").dataset.theme = 'light';
     }
 
-</script><meta property="og:url" content="/tech/principles/010-lsp/">
+</script><script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?9541b33c40092b9ec36f91947864a400";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+    <meta property="og:url" content="/tech/principles/010-lsp/">
   <meta property="og:site_name" content="Zen Think">
   <meta property="og:title" content="010-Liskov-Substitution-Principle">
   <meta property="og:description" content="里氏替换原则（Liskov Substitution Principle，LSP） 里氏替换原则（Liskov Substitution Principle，LSP）由麻省理工学院计算机科学实验室的里斯科夫（Liskov）女士在 1987 年的“面向对象技术的高峰会议”（OOPSLA）上发表的一篇文章《数据抽象和层次》（Data Abstraction and Hierarchy）里提出来的，她提出：继承必须确保超类所拥有的性质在子类中仍然成立（Inheritance should ensure that any property proved about supertype objects also holds for subtype objects）。

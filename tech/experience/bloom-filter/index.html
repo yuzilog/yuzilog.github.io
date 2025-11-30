@@ -120,7 +120,16 @@ print(bf.check(&#34;python&#34;)) # 输出: False（可能为 False，但存在�
         document.querySelector("html").dataset.theme = 'light';
     }
 
-</script><meta property="og:url" content="/tech/experience/bloom-filter/">
+</script><script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?9541b33c40092b9ec36f91947864a400";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+    <meta property="og:url" content="/tech/experience/bloom-filter/">
   <meta property="og:site_name" content="Zen Think">
   <meta property="og:title" content="bloom-filter">
   <meta property="og:description" content="布隆过滤器（Bloom Filter）是 1970 年由布隆提出的，是一种高效的概率型数据结构。它实际上是一个很长的二进制向量和一系列随机映射函数。用于测试一个元素是否属于一个集合。它特别适用于需要快速检查一个元素是否在一个大集合中的场景。布隆过滤器通过牺牲一定的准确性（存在误判的可能性）来换取空间效率和查询速度。

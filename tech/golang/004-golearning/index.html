@@ -119,7 +119,16 @@ for i, v := range b {
         document.querySelector("html").dataset.theme = 'light';
     }
 
-</script><meta property="og:url" content="/tech/golang/004-golearning/">
+</script><script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?9541b33c40092b9ec36f91947864a400";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+    <meta property="og:url" content="/tech/golang/004-golearning/">
   <meta property="og:site_name" content="Zen Think">
   <meta property="og:title" content="golang快速入门(4) Array & Slice">
   <meta property="og:description" content="本节主要介绍数组(array)与切片(slice)，也比较让人困惑。go语言数组与切片都属于集合类的类型。但数组类型的声明长度必须给定，而且之后不会再改变。切片的长度可以自动地随着其中元素数量的增长而增长，但不会随着元素数量的减少而减小。简而言之：数组是固定长度，切片是可变长度。 go语言中切片可以看成数组的一个特例，这里表达不一定准备，大家自行体会吧。
